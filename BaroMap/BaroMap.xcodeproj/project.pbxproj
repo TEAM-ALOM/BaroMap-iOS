@@ -96,6 +96,7 @@
 		9357AEE72B0C173D000B4353 /* BaroMap */ = {
 			isa = PBXGroup;
 			children = (
+				9357AF152B0C183B000B4353 /* Modules */,
 				9357AEE82B0C173D000B4353 /* BaroMapApp.swift */,
 				9357AEEA2B0C173D000B4353 /* ContentView.swift */,
 				9357AEEC2B0C173F000B4353 /* Assets.xcassets */,
@@ -127,6 +128,53 @@
 				9357AF052B0C173F000B4353 /* BaroMapUITestsLaunchTests.swift */,
 			);
 			path = BaroMapUITests;
+			sourceTree = "<group>";
+		};
+		9357AF152B0C183B000B4353 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				9357AF1A2B0C1875000B4353 /* App */,
+				9357AF192B0C186D000B4353 /* Domain */,
+				9357AF182B0C1867000B4353 /* Feature */,
+				9357AF172B0C1856000B4353 /* Repository */,
+				9357AF162B0C1846000B4353 /* DesignSystem */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		9357AF162B0C1846000B4353 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		9357AF172B0C1856000B4353 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		9357AF182B0C1867000B4353 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		9357AF192B0C186D000B4353 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		9357AF1A2B0C1875000B4353 /* App */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
