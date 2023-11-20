@@ -177,6 +177,9 @@
 		9357AF182B0C1867000B4353 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				9357AF2D2B0C1B2D000B4353 /* Home */,
+				9357AF2C2B0C1B27000B4353 /* Map */,
+				9357AF2B2B0C1B1F000B4353 /* Menu */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -196,6 +199,27 @@
 				9357AF292B0C19C4000B4353 /* RootView.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		9357AF2B2B0C1B1F000B4353 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		9357AF2C2B0C1B27000B4353 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		9357AF2D2B0C1B2D000B4353 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
