@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9357AEE92B0C173D000B4353 /* BaroMapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AEE82B0C173D000B4353 /* BaroMapApp.swift */; };
 		9357AEEB2B0C173D000B4353 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AEEA2B0C173D000B4353 /* ContentView.swift */; };
 		9357AEED2B0C173F000B4353 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9357AEEC2B0C173F000B4353 /* Assets.xcassets */; };
 		9357AEF02B0C173F000B4353 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9357AEEF2B0C173F000B4353 /* Preview Assets.xcassets */; };
@@ -20,6 +19,9 @@
 		9357AF202B0C1915000B4353 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AF1F2B0C1915000B4353 /* Modifiers.swift */; };
 		9357AF222B0C192D000B4353 /* Modifiers+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AF212B0C192D000B4353 /* Modifiers+Extensions.swift */; };
 		9357AF242B0C1939000B4353 /* Paddings+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AF232B0C1939000B4353 /* Paddings+Extensions.swift */; };
+		9357AF262B0C19B4000B4353 /* RootApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AF252B0C19B4000B4353 /* RootApp.swift */; };
+		9357AF282B0C19BB000B4353 /* RootStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AF272B0C19BB000B4353 /* RootStore.swift */; };
+		9357AF2A2B0C19C4000B4353 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AF292B0C19C4000B4353 /* RootView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +43,6 @@
 
 /* Begin PBXFileReference section */
 		9357AEE52B0C173D000B4353 /* BaroMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaroMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9357AEE82B0C173D000B4353 /* BaroMapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaroMapApp.swift; sourceTree = "<group>"; };
 		9357AEEA2B0C173D000B4353 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9357AEEC2B0C173F000B4353 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9357AEEF2B0C173F000B4353 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -55,6 +56,9 @@
 		9357AF1F2B0C1915000B4353 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		9357AF212B0C192D000B4353 /* Modifiers+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Modifiers+Extensions.swift"; sourceTree = "<group>"; };
 		9357AF232B0C1939000B4353 /* Paddings+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Paddings+Extensions.swift"; sourceTree = "<group>"; };
+		9357AF252B0C19B4000B4353 /* RootApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootApp.swift; sourceTree = "<group>"; };
+		9357AF272B0C19BB000B4353 /* RootStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootStore.swift; sourceTree = "<group>"; };
+		9357AF292B0C19C4000B4353 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				9357AF152B0C183B000B4353 /* Modules */,
-				9357AEE82B0C173D000B4353 /* BaroMapApp.swift */,
 				9357AEEA2B0C173D000B4353 /* ContentView.swift */,
 				9357AEEC2B0C173F000B4353 /* Assets.xcassets */,
 				9357AEEE2B0C173F000B4353 /* Preview Content */,
@@ -188,6 +191,9 @@
 		9357AF1A2B0C1875000B4353 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				9357AF252B0C19B4000B4353 /* RootApp.swift */,
+				9357AF272B0C19BB000B4353 /* RootStore.swift */,
+				9357AF292B0C19C4000B4353 /* RootView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -332,8 +338,10 @@
 				9357AF242B0C1939000B4353 /* Paddings+Extensions.swift in Sources */,
 				9357AF1C2B0C18F3000B4353 /* Colors.swift in Sources */,
 				9357AF222B0C192D000B4353 /* Modifiers+Extensions.swift in Sources */,
-				9357AEE92B0C173D000B4353 /* BaroMapApp.swift in Sources */,
+				9357AF2A2B0C19C4000B4353 /* RootView.swift in Sources */,
+				9357AF262B0C19B4000B4353 /* RootApp.swift in Sources */,
 				9357AF1E2B0C1904000B4353 /* Colors+Extensions.swift in Sources */,
+				9357AF282B0C19BB000B4353 /* RootStore.swift in Sources */,
 				9357AF202B0C1915000B4353 /* Modifiers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
