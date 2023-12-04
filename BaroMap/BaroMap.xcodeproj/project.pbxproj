@@ -249,12 +249,28 @@
 		9357AF4D2B1DAC80000B4353 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				9357AF562B1DB174000B4353 /* Destination */,
+				9357AF572B1DB186000B4353 /* Path */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		9357AF562B1DB174000B4353 /* Destination */ = {
+			isa = PBXGroup;
+			children = (
 				9357AF4E2B1DAC90000B4353 /* DestinationService.swift */,
 				9357AF502B1DAC9D000B4353 /* DestinationRequest.swift */,
 				9357AF522B1DACA6000B4353 /* DestinationResponse.swift */,
 				9357AF542B1DACB2000B4353 /* DestinationProvider.swift */,
 			);
-			path = Auth;
+			path = Destination;
+			sourceTree = "<group>";
+		};
+		9357AF572B1DB186000B4353 /* Path */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Path;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
