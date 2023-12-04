@@ -31,6 +31,12 @@
 		9357AF512B1DAC9D000B4353 /* DestinationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AF502B1DAC9D000B4353 /* DestinationRequest.swift */; };
 		9357AF532B1DACA6000B4353 /* DestinationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AF522B1DACA6000B4353 /* DestinationResponse.swift */; };
 		9357AF552B1DACB2000B4353 /* DestinationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AF542B1DACB2000B4353 /* DestinationProvider.swift */; };
+		9357AF592B1DB1FF000B4353 /* SearchLocationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AF582B1DB1FF000B4353 /* SearchLocationStore.swift */; };
+		9357AF5B2B1DB20A000B4353 /* SearchLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AF5A2B1DB20A000B4353 /* SearchLocationView.swift */; };
+		9357AF5D2B1DB217000B4353 /* SearchDestinationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AF5C2B1DB217000B4353 /* SearchDestinationStore.swift */; };
+		9357AF5F2B1DB226000B4353 /* SearchDestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AF5E2B1DB226000B4353 /* SearchDestinationView.swift */; };
+		9357AF612B1DB29E000B4353 /* PathListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AF602B1DB29E000B4353 /* PathListStore.swift */; };
+		9357AF632B1DB2A6000B4353 /* PathListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AF622B1DB2A6000B4353 /* PathListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +83,12 @@
 		9357AF502B1DAC9D000B4353 /* DestinationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationRequest.swift; sourceTree = "<group>"; };
 		9357AF522B1DACA6000B4353 /* DestinationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationResponse.swift; sourceTree = "<group>"; };
 		9357AF542B1DACB2000B4353 /* DestinationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationProvider.swift; sourceTree = "<group>"; };
+		9357AF582B1DB1FF000B4353 /* SearchLocationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationStore.swift; sourceTree = "<group>"; };
+		9357AF5A2B1DB20A000B4353 /* SearchLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationView.swift; sourceTree = "<group>"; };
+		9357AF5C2B1DB217000B4353 /* SearchDestinationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDestinationStore.swift; sourceTree = "<group>"; };
+		9357AF5E2B1DB226000B4353 /* SearchDestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDestinationView.swift; sourceTree = "<group>"; };
+		9357AF602B1DB29E000B4353 /* PathListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathListStore.swift; sourceTree = "<group>"; };
+		9357AF622B1DB2A6000B4353 /* PathListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +247,12 @@
 		9357AF2C2B0C1B27000B4353 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				9357AF582B1DB1FF000B4353 /* SearchLocationStore.swift */,
+				9357AF5A2B1DB20A000B4353 /* SearchLocationView.swift */,
+				9357AF5C2B1DB217000B4353 /* SearchDestinationStore.swift */,
+				9357AF5E2B1DB226000B4353 /* SearchDestinationView.swift */,
+				9357AF602B1DB29E000B4353 /* PathListStore.swift */,
+				9357AF622B1DB2A6000B4353 /* PathListView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -410,21 +428,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				9357AEEB2B0C173D000B4353 /* ContentView.swift in Sources */,
+				9357AF5B2B1DB20A000B4353 /* SearchLocationView.swift in Sources */,
 				9357AF532B1DACA6000B4353 /* DestinationResponse.swift in Sources */,
 				9357AF242B0C1939000B4353 /* Paddings+Extensions.swift in Sources */,
+				9357AF592B1DB1FF000B4353 /* SearchLocationStore.swift in Sources */,
 				9357AF1C2B0C18F3000B4353 /* Colors.swift in Sources */,
 				9357AF222B0C192D000B4353 /* Modifiers+Extensions.swift in Sources */,
 				9357AF4A2B1DA672000B4353 /* PathDetail.swift in Sources */,
 				9357AF4F2B1DAC90000B4353 /* DestinationService.swift in Sources */,
+				9357AF632B1DB2A6000B4353 /* PathListView.swift in Sources */,
 				9357AF4C2B1DA677000B4353 /* Place.swift in Sources */,
 				9357AF2A2B0C19C4000B4353 /* RootView.swift in Sources */,
 				9357AF552B1DACB2000B4353 /* DestinationProvider.swift in Sources */,
 				9357AF262B0C19B4000B4353 /* RootApp.swift in Sources */,
 				9357AF1E2B0C1904000B4353 /* Colors+Extensions.swift in Sources */,
 				9357AF282B0C19BB000B4353 /* RootStore.swift in Sources */,
+				9357AF5D2B1DB217000B4353 /* SearchDestinationStore.swift in Sources */,
 				9357AF462B1DA665000B4353 /* StationInfo.swift in Sources */,
 				9357AF202B0C1915000B4353 /* Modifiers.swift in Sources */,
+				9357AF612B1DB29E000B4353 /* PathListStore.swift in Sources */,
 				9357AF442B1DA660000B4353 /* Line.swift in Sources */,
+				9357AF5F2B1DB226000B4353 /* SearchDestinationView.swift in Sources */,
 				9357AF512B1DAC9D000B4353 /* DestinationRequest.swift in Sources */,
 				9357AF482B1DA66B000B4353 /* Coordinate.swift in Sources */,
 			);
