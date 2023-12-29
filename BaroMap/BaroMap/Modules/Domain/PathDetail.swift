@@ -16,7 +16,7 @@ class PathDetail {
     
     init(departure: String, destination: String, eta: String, countDown: Int, stationsInfo: Array<StationInfo>) {
         self.departure = departure
-        self.destination = arrival
+        self.destination = destination
         self.eta = eta
         self.countDown = countDown
         self.stationsInfo = stationsInfo

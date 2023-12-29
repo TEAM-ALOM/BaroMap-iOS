@@ -8,13 +8,24 @@
 import Foundation
 import Moya
 
-struct DestinationResponse: Codable {
+struct DestinationResponse: Decodable {
     var type: String
     var data: Data
     
-    struct Data: Codable {
+    struct Data: Decodable {
         var place: Place
         var distance: Int
+        
+        struct Place: Decodable {
+            var placeName: String
+            var placeAddress: String
+            var coordinate: Coordinate
+            
+            struct Coordinate: Decodable {
+                var latitude: Double
+                var longitude: Double
+            }
+        }
     }
 }
 

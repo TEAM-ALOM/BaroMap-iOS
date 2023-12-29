@@ -1,8 +1,8 @@
 //
 //  RootApp.swift
-//  BaroMap
+//  classPractice
 //
-//  Created by 이소리 on 11/21/23.
+//  Created by 이소리 on 11/10/23.
 //
 
 import SwiftUI
@@ -12,11 +12,11 @@ import ComposableArchitecture
 struct RootApp: App {
     var body: some Scene {
         WindowGroup {
-            SearchLocationView(
-                store: Store(initialState: SearchLocationStore.State()) {
-                    SearchLocationStore()
-                        ._printChanges()
-                }
+            RootView(
+//                store: Store(initialState: RootStore.State()) {
+//                    RootStore()
+//                        ._printChanges()
+//                }
             )
         }
     }
