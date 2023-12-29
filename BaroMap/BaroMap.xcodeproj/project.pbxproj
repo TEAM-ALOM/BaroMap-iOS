@@ -150,7 +150,8 @@
 				9357AF162B0C1846000B4353 /* DesignSystem */,
 				9357AF182B0C1867000B4353 /* Feature */,
 			);
-			path = Sources;
+			name = Sources;
+			path = Modules/Sources;
 			sourceTree = "<group>";
 		};
 		933F72032B3ECAF600DAD51C /* Resources */ = {
@@ -185,7 +186,8 @@
 			isa = PBXGroup;
 			children = (
 				933F72012B3EC09500DAD51C /* Info.plist */,
-				9357AF152B0C183B000B4353 /* Modules */,
+				933F72032B3ECAF600DAD51C /* Resources */,
+				933F72022B3ECA7700DAD51C /* Sources */,
 				9357AEEA2B0C173D000B4353 /* ContentView.swift */,
 				9357AEEC2B0C173F000B4353 /* Assets.xcassets */,
 				9357AEEE2B0C173F000B4353 /* Preview Content */,
@@ -216,15 +218,6 @@
 				9357AF052B0C173F000B4353 /* BaroMapUITestsLaunchTests.swift */,
 			);
 			path = BaroMapUITests;
-			sourceTree = "<group>";
-		};
-		9357AF152B0C183B000B4353 /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				933F72032B3ECAF600DAD51C /* Resources */,
-				933F72022B3ECA7700DAD51C /* Sources */,
-			);
-			path = Modules;
 			sourceTree = "<group>";
 		};
 		9357AF162B0C1846000B4353 /* DesignSystem */ = {
