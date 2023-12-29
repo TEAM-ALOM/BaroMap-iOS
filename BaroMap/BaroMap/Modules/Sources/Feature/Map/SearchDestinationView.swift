@@ -29,7 +29,7 @@ struct SearchDestinationView: View {
                                     self.destination = ""
                                 }) {
                                     Image(systemName: "xmark.circle.fill")
-                                        .foregroundColor(.red) // shapeQuaternaryColor
+                                        .foregroundColor(.shapeQuaternaryColor) // shapeQuaternaryColor
                                 }
                             } else {
                                 EmptyView()
@@ -50,19 +50,19 @@ struct SearchDestinationView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .frame(height: 66)
                                 .frame(maxWidth: .infinity)
-                                .foregroundColor(.white)
-                                .shadow(radius: 1)
+                                .foregroundColor(.shapeColor)
+                                .shadow(radius: 1) // modifier 적용
                                 .padding(1) // infinity 때문에 살짝 잘려서
                                 .overlay(
                                     HStack {
                                         VStack {
                                             Image(systemName: "mappin.circle.fill")
-                                                .foregroundColor(.red)
+                                                .foregroundColor(.keyColor)
                                             
                                             Spacer()
                                             
                                             Text("3.6km")
-                                                .foregroundColor(.red)
+                                                .foregroundColor(.keyTertiaryColor)
                                                 .font(.system(size: 12))
                                         }
                                         VStack(alignment: .leading) {
@@ -81,7 +81,7 @@ struct SearchDestinationView: View {
                                         NavigationLink(destination: Text("장소 검색 결과 화면(지도)")) {
                                             Text("지도 보기")
                                                 .font(.system(size: 13))
-                                                .foregroundColor(.red) // keyColor
+                                                .foregroundColor(.keyColor) // keyColor
                                             
                                         }
                                     }
@@ -96,7 +96,7 @@ struct SearchDestinationView: View {
                             viewStore.send(.cancelButtonTapped)
                         }, label: {
                             Text("닫기")
-                                .foregroundColor(.red) // keyColor
+                                .foregroundColor(.keyColor) // keyColor
                         })
                 }
             }
@@ -109,15 +109,15 @@ struct SearchTextFieldModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.system(size: 14))
-            .foregroundColor(.black) // textQuatuernary
-            .accentColor(.red)
+            .foregroundColor(.textColor) // textQuatuernary
+            .accentColor(.keyColor)
 //            .underline(true)
             .padding()
             .frame(height: 34)
             .frame(maxWidth: .infinity)
             .background {
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(.gray) // shapeSecondary
+                    .foregroundColor(.shapeSecondaryColor) // shapeSecondary
             }
     }
 }

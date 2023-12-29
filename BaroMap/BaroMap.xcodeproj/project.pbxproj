@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		933F72002B3EBDC900DAD51C /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 933F71FF2B3EBDC900DAD51C /* NMapsMap */; };
+		933F72052B3ECB2300DAD51C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 933F72042B3ECB2300DAD51C /* Assets.xcassets */; };
 		9357AEEB2B0C173D000B4353 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AEEA2B0C173D000B4353 /* ContentView.swift */; };
 		9357AEED2B0C173F000B4353 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9357AEEC2B0C173F000B4353 /* Assets.xcassets */; };
 		9357AEF02B0C173F000B4353 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9357AEEF2B0C173F000B4353 /* Preview Assets.xcassets */; };
@@ -69,6 +70,7 @@
 
 /* Begin PBXFileReference section */
 		933F72012B3EC09500DAD51C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		933F72042B3ECB2300DAD51C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9357AEE52B0C173D000B4353 /* BaroMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaroMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9357AEEA2B0C173D000B4353 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9357AEEC2B0C173F000B4353 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -140,6 +142,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		933F72022B3ECA7700DAD51C /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9357AF1A2B0C1875000B4353 /* App */,
+				9357AF192B0C186D000B4353 /* Domain */,
+				9357AF162B0C1846000B4353 /* DesignSystem */,
+				9357AF182B0C1867000B4353 /* Feature */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		933F72032B3ECAF600DAD51C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				933F72042B3ECB2300DAD51C /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		9357AEDC2B0C173D000B4353 = {
 			isa = PBXGroup;
 			children = (
@@ -200,11 +221,8 @@
 		9357AF152B0C183B000B4353 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				9357AF1A2B0C1875000B4353 /* App */,
-				9357AF192B0C186D000B4353 /* Domain */,
-				9357AF182B0C1867000B4353 /* Feature */,
-				9357AF172B0C1856000B4353 /* Repository */,
-				9357AF162B0C1846000B4353 /* DesignSystem */,
+				933F72032B3ECAF600DAD51C /* Resources */,
+				933F72022B3ECA7700DAD51C /* Sources */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -219,13 +237,6 @@
 				9357AF232B0C1939000B4353 /* Paddings+Extensions.swift */,
 			);
 			path = DesignSystem;
-			sourceTree = "<group>";
-		};
-		9357AF172B0C1856000B4353 /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Repository;
 			sourceTree = "<group>";
 		};
 		9357AF182B0C1867000B4353 /* Feature */ = {
@@ -439,6 +450,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9357AEF02B0C173F000B4353 /* Preview Assets.xcassets in Resources */,
+				933F72052B3ECB2300DAD51C /* Assets.xcassets in Resources */,
 				9357AEED2B0C173F000B4353 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -656,6 +668,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BaroMap/Preview Content\"";
@@ -676,7 +689,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = class.BaroMap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alom.baro.BaroMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -689,6 +702,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BaroMap/Preview Content\"";
@@ -709,7 +723,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = class.BaroMap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alom.baro.BaroMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

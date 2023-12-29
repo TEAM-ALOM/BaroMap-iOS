@@ -10,6 +10,7 @@ import ComposableArchitecture
 import NMapsMap
 import CoreLocation
 
+// FIXME: MapView 분리 필요
 struct MapView: UIViewRepresentable {
     let coord = NMGLatLng(lat: 37.55062, lng: 127.07440)
     let locationManager = CLLocationManager()
@@ -65,7 +66,7 @@ struct SearchLocationView: View {
                             viewStore.send(.searchLocationButtonTapped)
                         }, label: {
                             Text("장소 검색")
-                                .foregroundColor(.black) // text-quaternary-color
+                                .foregroundColor(.textTertiary)
                                 .underline(true)
                                 .frame(height: 10)
                                 .frame(maxWidth: .infinity)
@@ -73,9 +74,9 @@ struct SearchLocationView: View {
                             Spacer() // 안 먹힘
                             
                             Image(systemName: "magnifyingglass")
-                                .foregroundColor(.black) // text-quaternary-color
+                                .foregroundColor(.textTertiary)
                         })
-                        .background(Color.white) // shapeColor
+                        .background(Color.shapeColor) // 버튼 때문에 색이 뿌얘짐
                         .cornerRadius(10)
                         .fullScreenCover(
                             store: self.store.scope(
@@ -119,7 +120,7 @@ struct CircleButton: View {
             Image(systemName: image)
                 .font(Font.title.weight(.bold))
                 .frame(width: 30, height: 30)
-                .foregroundColor(Color.red)
+                .foregroundColor(.keyColor)
                 .clipShape(Circle())
         }
     }
