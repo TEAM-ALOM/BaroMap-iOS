@@ -13,10 +13,10 @@ struct RootApp: App {
     var body: some Scene {
         WindowGroup {
             RootView(
-//                store: Store(initialState: RootStore.State()) {
-//                    RootStore()
-//                        ._printChanges()
-//                }
+                store: Store(initialState: RootStore.State()) {
+                    RootStore()
+                        ._printChanges()
+                }
             )
         }
     }
