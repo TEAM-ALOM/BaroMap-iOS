@@ -68,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		933F72012B3EC09500DAD51C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9357AEE52B0C173D000B4353 /* BaroMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaroMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9357AEEA2B0C173D000B4353 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9357AEEC2B0C173F000B4353 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -162,6 +163,7 @@
 		9357AEE72B0C173D000B4353 /* BaroMap */ = {
 			isa = PBXGroup;
 			children = (
+				933F72012B3EC09500DAD51C /* Info.plist */,
 				9357AF152B0C183B000B4353 /* Modules */,
 				9357AEEA2B0C173D000B4353 /* ContentView.swift */,
 				9357AEEC2B0C173F000B4353 /* Assets.xcassets */,
@@ -660,6 +662,10 @@
 				DEVELOPMENT_TEAM = X4S5UYW6DJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BaroMap/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자의 현재 위치를 지도상에서 표시하고 주변 검색 결과 및 예상 이동 시간을 제공하는 데 사용됩니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "사용자의 현재 위치를 지도상에서 표시하고 주변 검색 결과 및 예상 이동 시간을 제공하는 데 사용됩니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 현재 위치를 지도상에서 표시하고 주변 검색 결과 및 예상 이동 시간을 제공하는 데 사용됩니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -689,6 +695,10 @@
 				DEVELOPMENT_TEAM = X4S5UYW6DJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BaroMap/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자의 현재 위치를 지도상에서 표시하고 주변 검색 결과 및 예상 이동 시간을 제공하는 데 사용됩니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "사용자의 현재 위치를 지도상에서 표시하고 주변 검색 결과 및 예상 이동 시간을 제공하는 데 사용됩니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 현재 위치를 지도상에서 표시하고 주변 검색 결과 및 예상 이동 시간을 제공하는 데 사용됩니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
