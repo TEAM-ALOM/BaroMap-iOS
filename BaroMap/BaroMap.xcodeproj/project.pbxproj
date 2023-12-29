@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		933F72002B3EBDC900DAD51C /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 933F71FF2B3EBDC900DAD51C /* NMapsMap */; };
 		9357AEEB2B0C173D000B4353 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AEEA2B0C173D000B4353 /* ContentView.swift */; };
 		9357AEED2B0C173F000B4353 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9357AEEC2B0C173F000B4353 /* Assets.xcassets */; };
 		9357AEF02B0C173F000B4353 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9357AEEF2B0C173F000B4353 /* Preview Assets.xcassets */; };
@@ -113,6 +114,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93EE68392B3EADF90052454D /* RxMoya in Frameworks */,
+				933F72002B3EBDC900DAD51C /* NMapsMap in Frameworks */,
 				93EE68332B3EADF90052454D /* CombineMoya in Frameworks */,
 				93EE68372B3EADF90052454D /* ReactiveMoya in Frameworks */,
 				9357AF142B0C17CE000B4353 /* ComposableArchitecture in Frameworks */,
@@ -339,6 +341,7 @@
 				93EE68342B3EADF90052454D /* Moya */,
 				93EE68362B3EADF90052454D /* ReactiveMoya */,
 				93EE68382B3EADF90052454D /* RxMoya */,
+				933F71FF2B3EBDC900DAD51C /* NMapsMap */,
 			);
 			productName = BaroMap;
 			productReference = 9357AEE52B0C173D000B4353 /* BaroMap.app */;
@@ -415,6 +418,7 @@
 			packageReferences = (
 				9357AF122B0C17CE000B4353 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				93EE68312B3EADF90052454D /* XCRemoteSwiftPackageReference "Moya" */,
+				933F71FE2B3EBDC900DAD51C /* XCRemoteSwiftPackageReference "NMapsMap" */,
 			);
 			productRefGroup = 9357AEE62B0C173D000B4353 /* Products */;
 			projectDirPath = "";
@@ -529,6 +533,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -592,6 +597,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -819,6 +825,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		933F71FE2B3EBDC900DAD51C /* XCRemoteSwiftPackageReference "NMapsMap" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jaemyeong/NMapsMap";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.17.0;
+			};
+		};
 		9357AF122B0C17CE000B4353 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
@@ -838,6 +852,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		933F71FF2B3EBDC900DAD51C /* NMapsMap */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 933F71FE2B3EBDC900DAD51C /* XCRemoteSwiftPackageReference "NMapsMap" */;
+			productName = NMapsMap;
+		};
 		9357AF132B0C17CE000B4353 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9357AF122B0C17CE000B4353 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
