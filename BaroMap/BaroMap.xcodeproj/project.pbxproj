@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		933F72002B3EBDC900DAD51C /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 933F71FF2B3EBDC900DAD51C /* NMapsMap */; };
+		933F72052B3ECB2300DAD51C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 933F72042B3ECB2300DAD51C /* Assets.xcassets */; };
 		9357AEEB2B0C173D000B4353 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357AEEA2B0C173D000B4353 /* ContentView.swift */; };
 		9357AEED2B0C173F000B4353 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9357AEEC2B0C173F000B4353 /* Assets.xcassets */; };
 		9357AEF02B0C173F000B4353 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9357AEEF2B0C173F000B4353 /* Preview Assets.xcassets */; };
@@ -41,6 +43,12 @@
 		93EE68352B3EADF90052454D /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 93EE68342B3EADF90052454D /* Moya */; };
 		93EE68372B3EADF90052454D /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 93EE68362B3EADF90052454D /* ReactiveMoya */; };
 		93EE68392B3EADF90052454D /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 93EE68382B3EADF90052454D /* RxMoya */; };
+		93EE683B2B3EBB610052454D /* HomeMainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EE683A2B3EBB610052454D /* HomeMainStore.swift */; };
+		93EE683D2B3EBB690052454D /* HomeMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EE683C2B3EBB690052454D /* HomeMainView.swift */; };
+		93EE683F2B3EBB870052454D /* MenuStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EE683E2B3EBB870052454D /* MenuStore.swift */; };
+		93EE68412B3EBB8D0052454D /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EE68402B3EBB8D0052454D /* MenuView.swift */; };
+		93EE68432B3EBC190052454D /* MainTabStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EE68422B3EBC190052454D /* MainTabStore.swift */; };
+		93EE68452B3EBC260052454D /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EE68442B3EBC260052454D /* MainTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +69,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		933F72012B3EC09500DAD51C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		933F72042B3ECB2300DAD51C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9357AEE52B0C173D000B4353 /* BaroMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaroMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9357AEEA2B0C173D000B4353 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9357AEEC2B0C173F000B4353 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,6 +103,12 @@
 		9357AF5E2B1DB226000B4353 /* SearchDestinationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDestinationView.swift; sourceTree = "<group>"; };
 		9357AF602B1DB29E000B4353 /* PathListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathListStore.swift; sourceTree = "<group>"; };
 		9357AF622B1DB2A6000B4353 /* PathListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathListView.swift; sourceTree = "<group>"; };
+		93EE683A2B3EBB610052454D /* HomeMainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainStore.swift; sourceTree = "<group>"; };
+		93EE683C2B3EBB690052454D /* HomeMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainView.swift; sourceTree = "<group>"; };
+		93EE683E2B3EBB870052454D /* MenuStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuStore.swift; sourceTree = "<group>"; };
+		93EE68402B3EBB8D0052454D /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		93EE68422B3EBC190052454D /* MainTabStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabStore.swift; sourceTree = "<group>"; };
+		93EE68442B3EBC260052454D /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +117,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93EE68392B3EADF90052454D /* RxMoya in Frameworks */,
+				933F72002B3EBDC900DAD51C /* NMapsMap in Frameworks */,
 				93EE68332B3EADF90052454D /* CombineMoya in Frameworks */,
 				93EE68372B3EADF90052454D /* ReactiveMoya in Frameworks */,
 				9357AF142B0C17CE000B4353 /* ComposableArchitecture in Frameworks */,
@@ -125,6 +142,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		933F72022B3ECA7700DAD51C /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9357AF1A2B0C1875000B4353 /* App */,
+				9357AF192B0C186D000B4353 /* Domain */,
+				9357AF162B0C1846000B4353 /* DesignSystem */,
+				9357AF182B0C1867000B4353 /* Feature */,
+			);
+			name = Sources;
+			path = Modules/Sources;
+			sourceTree = "<group>";
+		};
+		933F72032B3ECAF600DAD51C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				933F72042B3ECB2300DAD51C /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		9357AEDC2B0C173D000B4353 = {
 			isa = PBXGroup;
 			children = (
@@ -148,7 +185,9 @@
 		9357AEE72B0C173D000B4353 /* BaroMap */ = {
 			isa = PBXGroup;
 			children = (
-				9357AF152B0C183B000B4353 /* Modules */,
+				933F72012B3EC09500DAD51C /* Info.plist */,
+				933F72032B3ECAF600DAD51C /* Resources */,
+				933F72022B3ECA7700DAD51C /* Sources */,
 				9357AEEA2B0C173D000B4353 /* ContentView.swift */,
 				9357AEEC2B0C173F000B4353 /* Assets.xcassets */,
 				9357AEEE2B0C173F000B4353 /* Preview Content */,
@@ -181,18 +220,6 @@
 			path = BaroMapUITests;
 			sourceTree = "<group>";
 		};
-		9357AF152B0C183B000B4353 /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				9357AF1A2B0C1875000B4353 /* App */,
-				9357AF192B0C186D000B4353 /* Domain */,
-				9357AF182B0C1867000B4353 /* Feature */,
-				9357AF172B0C1856000B4353 /* Repository */,
-				9357AF162B0C1846000B4353 /* DesignSystem */,
-			);
-			path = Modules;
-			sourceTree = "<group>";
-		};
 		9357AF162B0C1846000B4353 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,16 +232,11 @@
 			path = DesignSystem;
 			sourceTree = "<group>";
 		};
-		9357AF172B0C1856000B4353 /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Repository;
-			sourceTree = "<group>";
-		};
 		9357AF182B0C1867000B4353 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				93EE68422B3EBC190052454D /* MainTabStore.swift */,
+				93EE68442B3EBC260052454D /* MainTabView.swift */,
 				9357AF2D2B0C1B2D000B4353 /* Home */,
 				9357AF2C2B0C1B27000B4353 /* Map */,
 				9357AF2B2B0C1B1F000B4353 /* Menu */,
@@ -248,6 +270,8 @@
 		9357AF2B2B0C1B1F000B4353 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				93EE683E2B3EBB870052454D /* MenuStore.swift */,
+				93EE68402B3EBB8D0052454D /* MenuView.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -268,6 +292,8 @@
 		9357AF2D2B0C1B2D000B4353 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				93EE683A2B3EBB610052454D /* HomeMainStore.swift */,
+				93EE683C2B3EBB690052454D /* HomeMainView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -321,6 +347,7 @@
 				93EE68342B3EADF90052454D /* Moya */,
 				93EE68362B3EADF90052454D /* ReactiveMoya */,
 				93EE68382B3EADF90052454D /* RxMoya */,
+				933F71FF2B3EBDC900DAD51C /* NMapsMap */,
 			);
 			productName = BaroMap;
 			productReference = 9357AEE52B0C173D000B4353 /* BaroMap.app */;
@@ -397,6 +424,7 @@
 			packageReferences = (
 				9357AF122B0C17CE000B4353 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				93EE68312B3EADF90052454D /* XCRemoteSwiftPackageReference "Moya" */,
+				933F71FE2B3EBDC900DAD51C /* XCRemoteSwiftPackageReference "NMapsMap" */,
 			);
 			productRefGroup = 9357AEE62B0C173D000B4353 /* Products */;
 			projectDirPath = "";
@@ -415,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9357AEF02B0C173F000B4353 /* Preview Assets.xcassets in Resources */,
+				933F72052B3ECB2300DAD51C /* Assets.xcassets in Resources */,
 				9357AEED2B0C173F000B4353 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +469,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93EE683B2B3EBB610052454D /* HomeMainStore.swift in Sources */,
+				93EE683F2B3EBB870052454D /* MenuStore.swift in Sources */,
 				9357AEEB2B0C173D000B4353 /* ContentView.swift in Sources */,
 				9357AF5B2B1DB20A000B4353 /* SearchLocationView.swift in Sources */,
 				9357AF532B1DACA6000B4353 /* DestinationResponse.swift in Sources */,
@@ -453,17 +484,21 @@
 				9357AF4C2B1DA677000B4353 /* Place.swift in Sources */,
 				9357AF2A2B0C19C4000B4353 /* RootView.swift in Sources */,
 				9357AF552B1DACB2000B4353 /* DestinationProvider.swift in Sources */,
+				93EE683D2B3EBB690052454D /* HomeMainView.swift in Sources */,
 				9357AF262B0C19B4000B4353 /* RootApp.swift in Sources */,
 				9357AF1E2B0C1904000B4353 /* Colors+Extensions.swift in Sources */,
 				9357AF282B0C19BB000B4353 /* RootStore.swift in Sources */,
 				9357AF5D2B1DB217000B4353 /* SearchDestinationStore.swift in Sources */,
 				9357AF462B1DA665000B4353 /* StationInfo.swift in Sources */,
+				93EE68412B3EBB8D0052454D /* MenuView.swift in Sources */,
 				9357AF202B0C1915000B4353 /* Modifiers.swift in Sources */,
+				93EE68432B3EBC190052454D /* MainTabStore.swift in Sources */,
 				9357AF612B1DB29E000B4353 /* PathListStore.swift in Sources */,
 				9357AF442B1DA660000B4353 /* Line.swift in Sources */,
 				9357AF5F2B1DB226000B4353 /* SearchDestinationView.swift in Sources */,
 				9357AF512B1DAC9D000B4353 /* DestinationRequest.swift in Sources */,
 				9357AF482B1DA66B000B4353 /* Coordinate.swift in Sources */,
+				93EE68452B3EBC260052454D /* MainTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +540,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -568,6 +604,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -624,12 +661,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BaroMap/Preview Content\"";
 				DEVELOPMENT_TEAM = X4S5UYW6DJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BaroMap/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자의 현재 위치를 지도상에서 표시하고 주변 검색 결과 및 예상 이동 시간을 제공하는 데 사용됩니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "사용자의 현재 위치를 지도상에서 표시하고 주변 검색 결과 및 예상 이동 시간을 제공하는 데 사용됩니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 현재 위치를 지도상에서 표시하고 주변 검색 결과 및 예상 이동 시간을 제공하는 데 사용됩니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -640,7 +682,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = class.BaroMap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alom.baro.BaroMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -653,12 +695,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BaroMap/Preview Content\"";
 				DEVELOPMENT_TEAM = X4S5UYW6DJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BaroMap/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "사용자의 현재 위치를 지도상에서 표시하고 주변 검색 결과 및 예상 이동 시간을 제공하는 데 사용됩니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "사용자의 현재 위치를 지도상에서 표시하고 주변 검색 결과 및 예상 이동 시간을 제공하는 데 사용됩니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 현재 위치를 지도상에서 표시하고 주변 검색 결과 및 예상 이동 시간을 제공하는 데 사용됩니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -669,7 +716,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = class.BaroMap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alom.baro.BaroMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -795,6 +842,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		933F71FE2B3EBDC900DAD51C /* XCRemoteSwiftPackageReference "NMapsMap" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jaemyeong/NMapsMap";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.17.0;
+			};
+		};
 		9357AF122B0C17CE000B4353 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
@@ -814,6 +869,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		933F71FF2B3EBDC900DAD51C /* NMapsMap */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 933F71FE2B3EBDC900DAD51C /* XCRemoteSwiftPackageReference "NMapsMap" */;
+			productName = NMapsMap;
+		};
 		9357AF132B0C17CE000B4353 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9357AF122B0C17CE000B4353 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;

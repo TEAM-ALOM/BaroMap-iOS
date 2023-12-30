@@ -28,6 +28,15 @@
       }
     },
     {
+      "identity" : "nmapsmap",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jaemyeong/NMapsMap",
+      "state" : {
+        "revision" : "f312d23488d4a15a3a9cc27e66dc5afa3afc0145",
+        "version" : "3.17.0"
+      }
+    },
+    {
       "identity" : "reactiveswift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ReactiveCocoa/ReactiveSwift.git",
