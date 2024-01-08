@@ -1,6 +1,6 @@
 //
 //  SearchLocationStore.swift
-//  classPractice
+//  BaroMap
 //
 //  Created by 이소리 on 11/10/23.
 //
@@ -13,6 +13,7 @@ struct SearchLocationStore: Reducer {
         @PresentationState var isShownSearchDestinationView: SearchDestinationStore.State?
         
         var isDefectedArrowButtonVisible: Bool = true
+        var placeholder: String
     }
     
     enum Action: Equatable {

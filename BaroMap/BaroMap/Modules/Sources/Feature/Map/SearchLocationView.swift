@@ -1,6 +1,6 @@
 //
 //  SearchLocationView.swift
-//  classPractice
+//  BaroMap
 //
 //  Created by 이소리 on 11/10/23.
 //
@@ -10,49 +10,11 @@ import ComposableArchitecture
 import NMapsMap
 import CoreLocation
 
-// FIXME: MapView 분리 필요
-struct MapView: UIViewRepresentable {
-    let coord = NMGLatLng(lat: 37.55062, lng: 127.07440)
-    let locationManager = CLLocationManager()
-
-    class Coordinator: NSObject, NMFMapViewCameraDelegate, CLLocationManagerDelegate {
-        var parent: MapView
-        
-        init(_ parent: MapView) {
-            self.parent = parent
-        }
-    }
-
-    func makeUIView(context: Context) -> NMFNaverMapView {
-        let view = NMFNaverMapView()
-        
-        view.showZoomControls = false
-        view.showLocationButton = true
-        view.mapView.positionMode = .direction
-        
-        // 위치 설정
-        let cameraUpdate = NMFCameraUpdate(scrollTo: coord)
-        view.mapView.moveCamera(cameraUpdate)
-        print("위도: \(coord.lat), 경도: \(coord.lng)")
-
-        // 사용자 위치 정보 요청 설정
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.delegate = context.coordinator
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-
-        return view
-    }
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
-    func updateUIView(_ uiView: NMFNaverMapView, context: Context) {}
-}
-
 struct SearchLocationView: View {
     let store: StoreOf<SearchLocationStore> // store 연결
+    
+    @State var departure: String = ""
+    @State var arrival: String = ""
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in // observe 이유는?
@@ -62,29 +24,35 @@ struct SearchLocationView: View {
 
                 VStack {
                     HStack {
-                        Button(action: {
-                            viewStore.send(.searchLocationButtonTapped)
-                        }, label: {
-                            Text("장소 검색")
-                                .foregroundColor(.textTertiary)
-                                .underline(true)
-                                .frame(height: 10)
-                                .frame(maxWidth: .infinity)
-                            
-                            Spacer() // 안 먹힘
-                            
-                            Image(systemName: "magnifyingglass")
-                                .foregroundColor(.textTertiary)
-                        })
-                        .background(Color.shapeColor) // 버튼 때문에 색이 뿌얘짐
-                        .cornerRadius(10)
-                        .fullScreenCover(
-                            store: self.store.scope(
-                                state: \.$isShownSearchDestinationView,
-                                action: { .searching($0) }
-                            )
-                        ) { destinationStore in
-                            SearchDestinationView(store: destinationStore)
+                        if viewStore.isDefectedArrowButtonVisible {
+                            Button(action: {
+                                viewStore.send(.searchLocationButtonTapped)
+                            }, label: {
+                                Text("장소 검색")
+                                    .foregroundColor(.textTertiary)
+                                    .underline(true)
+                                    .frame(height: 12)
+                                    .frame(maxWidth: .infinity)
+
+                                Spacer() // 안 먹힘
+                                
+                                Image(systemName: "magnifyingglass")
+                                    .foregroundColor(.textTertiary)
+                            })
+                            .background(Color.shapeColor) // shapeColor
+                            .cornerRadius(10)
+                            .fullScreenCover(
+                                store: self.store.scope(
+                                    state: \.$isShownSearchDestinationView,
+                                    action: { .searching($0) }
+                                )
+                            ) { destinationStore in
+                                SearchDestinationView(store: destinationStore, placeholder: "장소")
+                            }
+                        }
+                        // 출발지-도착지 검색 바
+                        else {
+                            depArrBarView()
                         }
                     }
                     
@@ -109,6 +77,33 @@ struct SearchLocationView: View {
             }
         }
     }
+    
+    private func depArrBarView() -> some View {
+        HStack {
+            VStack {
+                SearchBar(store: self.store, placeholder: "출발지")
+                SearchBar(store: self.store, placeholder: "도착지")
+            }
+            Button(action: {
+                swapDepartureArrival()
+            }) {
+                Image(systemName: "arrow.up.arrow.down")
+                    .foregroundColor(Color.keyColor)
+                    .frame(width: 10, height: 28)
+            }
+        }
+        .padding(10)
+        .background(Color.shapeColor)
+        .cornerRadius(20)
+    }
+    
+    private func swapDepartureArrival() {
+        withAnimation {
+            let tmp = departure
+            departure = arrival
+            arrival = tmp
+        }
+    }
 }
 
 struct CircleButton: View {
@@ -125,6 +120,37 @@ struct CircleButton: View {
         }
     }
 }
+
+// 코드 중복 -> 재사용
+struct SearchBar: View {
+    let store: StoreOf<SearchLocationStore>
+
+    var placeholder: String
+    
+    var body: some View {
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            Button(action: {
+                viewStore.send(.searchLocationButtonTapped) 
+            }, label: {
+                Text(placeholder)
+                    .foregroundColor(.textQuaternaryColor)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 13)
+            })
+            .background(Color.shapeSecondaryColor)
+            .cornerRadius(9)
+            .fullScreenCover(
+                store: self.store.scope(
+                    state: \.$isShownSearchDestinationView,
+                    action: { .searching($0) }
+                )
+            ) { destinationStore in
+                SearchDestinationView(store: destinationStore, placeholder: placeholder)
+            }
+        }
+    }
+}
+
 
 //#Preview {
 //    SearchLocationView()
