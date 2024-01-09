@@ -77,8 +77,6 @@ struct MapSearchResultView: View {
             }
         }
     }
-    
-    
 }
 
 //#Preview {

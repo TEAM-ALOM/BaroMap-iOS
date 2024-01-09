@@ -14,8 +14,8 @@ struct SearchDestinationView: View {
     
     @State var destination: String = ""
     var placeholder: String
-    var data: Data
-    var place: Place
+//    var data: Data
+//    var place: Place
 
     
     var body: some View {
@@ -76,7 +76,7 @@ struct SearchDestinationView: View {
                                             
                                             Spacer()
                                             
-                                            Text(place.placeAddress)
+                                            Text("0.0km")
                                                 .font(.system(size: 12))
                                                 .lineLimit(nil)
                                         }
