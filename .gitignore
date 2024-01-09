@@ -118,5 +118,6 @@ Tuist/Dependencies
 Derived/
 *.xcworkspace
 *.xcodeproj
+*.xcuserstate
 *.p12
 master.key
