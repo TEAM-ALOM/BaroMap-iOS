@@ -1,6 +1,6 @@
 //
 //  SearchDestinationView.swift
-//  classPractice
+//  BaroMap
 //
 //  Created by 이소리 on 11/15/23.
 //
@@ -13,13 +13,17 @@ struct SearchDestinationView: View {
     let store: StoreOf<SearchDestinationStore>
     
     @State var destination: String = ""
+    var placeholder: String
+//    var data: Data
+//    var place: Place
+
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             NavigationView {
                     VStack(alignment: .leading) {
                         HStack {
-                            TextField("검색어 입력", text: $destination)
+                            TextField("검색어 입력", text: $destination) // 비어있으면 검색어 입력, 값이 있으면 그 값 불러오기
                             
                             Spacer()
                             
@@ -61,7 +65,7 @@ struct SearchDestinationView: View {
                                             
                                             Spacer()
                                             
-                                            Text("3.6km")
+                                            Text("0.0km")
                                                 .foregroundColor(.keyTertiaryColor)
                                                 .font(.system(size: 12))
                                         }
@@ -72,17 +76,23 @@ struct SearchDestinationView: View {
                                             
                                             Spacer()
                                             
-                                            Text("서울 송파구 잠실동 1-1")
+                                            Text("0.0km")
                                                 .font(.system(size: 12))
+                                                .lineLimit(nil)
                                         }
                                         
                                         Spacer()
                                         
-                                        NavigationLink(destination: Text("장소 검색 결과 화면(지도)")) {
+                                        NavigationLink(
+                                            destination: MapSearchResultView(store: self.store),
+                                            isActive: viewStore.binding(
+                                                get: \.isDetailViewActive,
+                                                send: SearchDestinationStore.Action.toggleDetailView
+                                            )
+                                        ) {
                                             Text("지도 보기")
                                                 .font(.system(size: 13))
-                                                .foregroundColor(.keyColor) // keyColor
-                                            
+                                                .foregroundColor(.keyColor)
                                         }
                                     }
                                         .padding()
@@ -90,7 +100,7 @@ struct SearchDestinationView: View {
                         }
                     }
                     .padding()
-                    .navigationTitle("장소 검색")
+                    .navigationTitle("\(placeholder) 검색") // "도착지"가 전달이 안 됨
                     .toolbar {
                         Button(action: {
                             viewStore.send(.cancelButtonTapped)
