@@ -56,7 +56,6 @@
 		F3091F2D2B483D7800099AB3 /* tabView_home1.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3091F2C2B483D7800099AB3 /* tabView_home1.swift */; };
 		F3091F2F2B483D9000099AB3 /* tabView_home2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3091F2E2B483D8F00099AB3 /* tabView_home2.swift */; };
 		F3091F312B483DCA00099AB3 /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3091F302B483DCA00099AB3 /* SearchLocation.swift */; };
-		F3C563342B4D17CE00B6B5CA /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = F3C563332B4D17CE00B6B5CA /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,7 +123,6 @@
 		F3091F2C2B483D7800099AB3 /* tabView_home1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabView_home1.swift; sourceTree = "<group>"; };
 		F3091F2E2B483D8F00099AB3 /* tabView_home2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabView_home2.swift; sourceTree = "<group>"; };
 		F3091F302B483DCA00099AB3 /* SearchLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocation.swift; sourceTree = "<group>"; };
-		F3C563332B4D17CE00B6B5CA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +179,6 @@
 		9357AEDC2B0C173D000B4353 = {
 			isa = PBXGroup;
 			children = (
-				F3C563332B4D17CE00B6B5CA /* .gitignore */,
 				9357AEE72B0C173D000B4353 /* BaroMap */,
 				9357AEF82B0C173F000B4353 /* BaroMapTests */,
 				9357AF022B0C173F000B4353 /* BaroMapUITests */,
@@ -466,7 +463,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3C563342B4D17CE00B6B5CA /* .gitignore in Resources */,
 				9357AEF02B0C173F000B4353 /* Preview Assets.xcassets in Resources */,
 				933F72052B3ECB2300DAD51C /* Assets.xcassets in Resources */,
 				9357AEED2B0C173F000B4353 /* Assets.xcassets in Resources */,
