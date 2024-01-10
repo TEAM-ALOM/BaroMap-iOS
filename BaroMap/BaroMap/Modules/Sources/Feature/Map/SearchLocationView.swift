@@ -32,7 +32,7 @@ struct SearchLocationView: View {
                                     .foregroundColor(.textTertiary)
                                     .underline(true)
                                     .frame(height: 12)
-                                    .frame(maxWidth: .infinity)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
 
                                 Spacer() // 안 먹힘
                                 
@@ -84,13 +84,18 @@ struct SearchLocationView: View {
                 SearchBar(store: self.store, placeholder: "출발지")
                 SearchBar(store: self.store, placeholder: "도착지")
             }
+            
             Button(action: {
                 swapDepartureArrival()
             }) {
                 Image(systemName: "arrow.up.arrow.down")
+                    .resizable()
+                    .fontWeight(.bold)
+                    .frame(width: 16, height: 16)
                     .foregroundColor(Color.keyColor)
-                    .frame(width: 10, height: 28)
             }
+            .buttonStyle(.plain)
+            .padding(5) // 패딩 이런식으로 주면 안 될 거 같은데
         }
         .padding(10)
         .background(Color.shapeColor)
@@ -113,11 +118,13 @@ struct CircleButton: View {
     var body: some View {
         Button(action: action) {
             Image(systemName: image)
+                .resizable()
                 .font(Font.title.weight(.bold))
-                .frame(width: 30, height: 30)
+                .frame(width: 40, height: 40)
                 .foregroundColor(.keyColor)
                 .clipShape(Circle())
         }
+        .buttonStyle(.plain)
     }
 }
 
@@ -134,9 +141,13 @@ struct SearchBar: View {
             }, label: {
                 Text(placeholder)
                     .foregroundColor(.textQuaternaryColor)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 13)
+                    .frame(alignment: .leading)
+                    .frame(height: 16)
+                
+                Spacer()
             })
+            .buttonStyle(.plain)
+            .padding(7)
             .background(Color.shapeSecondaryColor)
             .cornerRadius(9)
             .fullScreenCover(
