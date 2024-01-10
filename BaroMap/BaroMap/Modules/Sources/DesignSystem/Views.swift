@@ -52,7 +52,6 @@ struct MapView: UIViewRepresentable {
     func updateUIView(_ uiView: NMFNaverMapView, context: Context) {}
 }
 
-
 //#Preview {
 //    Views()
 //}

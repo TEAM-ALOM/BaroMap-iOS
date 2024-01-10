@@ -131,31 +131,6 @@ struct SearchDestinationView: View {
     }
 }
 
-struct SearchTextFieldModifier: ViewModifier {
-    
-    func body(content: Content) -> some View {
-        content
-            .font(.system(size: 14))
-            .foregroundColor(.textColor) // textQuatuernary
-            .accentColor(.keyColor)
-//            .underline(true)
-            .padding()
-            .frame(height: 34)
-            .frame(maxWidth: .infinity)
-            .background {
-                RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(.shapeSecondaryColor) // shapeSecondary
-            }
-    }
-}
-
-extension View {
-    
-    func asTextField() -> some View {
-        modifier(SearchTextFieldModifier()) // 이렇게 해서 View를 extension 하는 것이 일반적이고 관용적인 접근이라고 함
-    }
-}
-
 func formatDistance(_ meters: Int) -> String {
     if meters < 1000 {
         return "\(meters)m"
