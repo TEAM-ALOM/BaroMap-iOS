@@ -13,9 +13,9 @@ import ComposableArchitecture
 
 struct MapSearchResultView: View {
     let store: StoreOf<SearchDestinationStore>
-    
-    @State var locationName = "name"
-    @State var locationAddress = "address"
+        
+    @Binding var locationName: String
+    @Binding var locationAddress: String
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in

@@ -12,7 +12,19 @@ import Moya
 struct SearchDestinationView: View {
     let store: StoreOf<SearchDestinationStore>
     
-    @State var destination: String = ""
+    @State var destination: String = "" // 사용자가 입력하는 값(서버에 전달)
+    @State var locationName = "name" // 서버에서 받은 장소
+    @State var locationAddress = "address"
+    
+    @State var places: [PlaceInfo] = [ // 최대 10개까지
+        PlaceInfo(name: "세종대학교", address: "서울 광진구 능동로 209 세종대학교", distance: 800),
+        PlaceInfo(name: "세종대학교광개토관", address: "서울 광진구 능동로 209", distance: 1200),
+        PlaceInfo(name: "세종대학교 정문", address: "서울 광진구 군자동", distance: 1400),
+        PlaceInfo(name: "세종대학교 대양홀", address: "서울 광진구 능동로 209 세종대학교", distance: 20000),
+        
+    ]
+
+
     var placeholder: String
 //    var data: Data
 //    var place: Place
@@ -27,7 +39,6 @@ struct SearchDestinationView: View {
                             
                             Spacer()
                             
-                            // FIXME: x 버튼 위치 살짝 우측으로 밀어야 함
                             if !destination.isEmpty {
                                 Button(action: {
                                     self.destination = ""
@@ -35,6 +46,7 @@ struct SearchDestinationView: View {
                                     Image(systemName: "xmark.circle.fill")
                                         .foregroundColor(.shapeQuaternaryColor) // shapeQuaternaryColor
                                 }
+                                .buttonStyle(.plain) 
                             } else {
                                 EmptyView()
                             }
@@ -50,53 +62,58 @@ struct SearchDestinationView: View {
                                 Spacer()
                             }
                             
-                            // 나중에 modifier
-                            RoundedRectangle(cornerRadius: 20)
-                                .frame(height: 66)
-                                .frame(maxWidth: .infinity)
-                                .foregroundColor(.shapeColor)
-                                .shadow(radius: 1) // modifier 적용
-                                .padding(1) // infinity 때문에 살짝 잘려서
-                                .overlay(
-                                    HStack {
-                                        VStack {
-                                            Image(systemName: "mappin.circle.fill")
-                                                .foregroundColor(.keyColor)
-                                            
-                                            Spacer()
-                                            
-                                            Text("0.0km")
-                                                .foregroundColor(.keyTertiaryColor)
-                                                .font(.system(size: 12))
-                                        }
-                                        VStack(alignment: .leading) {
-                                            Text("\(destination)")
-                                                .font(.system(size: 13))
-                                                .bold()
-                                            
-                                            Spacer()
-                                            
-                                            Text("0.0km")
-                                                .font(.system(size: 12))
-                                                .lineLimit(nil)
-                                        }
-                                        
-                                        Spacer()
-                                        
-                                        NavigationLink(
-                                            destination: MapSearchResultView(store: self.store),
-                                            isActive: viewStore.binding(
-                                                get: \.isDetailViewActive,
-                                                send: SearchDestinationStore.Action.toggleDetailView
-                                            )
-                                        ) {
-                                            Text("지도 보기")
-                                                .font(.system(size: 13))
-                                                .foregroundColor(.keyColor)
-                                        }
-                                    }
-                                        .padding()
-                                )
+                            VStack(spacing: 10) {
+                                ForEach(places) { place in
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .frame(height: 66)
+                                        .frame(maxWidth: .infinity)
+                                        .foregroundColor(.shapeColor)
+                                        .shadow(radius: 1) // modifier 적용
+                                        .padding(1) // infinity 때문에 살짝 잘려서
+                                        .overlay(
+                                            HStack {
+                                                VStack {
+                                                    Image(systemName: "mappin.circle.fill")
+                                                        .foregroundColor(.keyColor)
+                                                    
+                                                    Spacer()
+                                                    
+                                                    Text(formatDistance(place.distance))
+                                                        .foregroundColor(.keyTertiaryColor)
+                                                        .font(.system(size: 12))
+                                                }
+                                                VStack(alignment: .leading) {
+                                                    Text(highlightMatchedText(place.name, destination))
+                                                        .foregroundColor(.textColor)
+                                                        .font(.system(size: 13))
+                                                        .bold()
+                                                    
+                                                    Spacer()
+                                                    
+                                                    Text(highlightMatchedText(place.address, destination))
+                                                        .font(.system(size: 12))
+                                                        .lineLimit(nil)
+                                                }
+                                                
+                                                Spacer()
+                                                
+                                                NavigationLink(
+                                                    destination: MapSearchResultView(store: self.store, locationName: self.$locationName, locationAddress: self.$locationAddress),
+                                                    isActive: viewStore.binding(
+                                                        get: \.isDetailViewActive,
+                                                        send: SearchDestinationStore.Action.toggleDetailView
+                                                    )
+                                                ) {
+                                                    Text("지도 보기") // 얘도 각각 다르게 -> 선택시 locationName, locationAddress 전달
+                                                        .font(.system(size: 13))
+                                                        .foregroundColor(.keyColor)
+                                                }
+                                            }
+                                                .padding()
+                                        )
+                                }
+
+                            }
                         }
                     }
                     .padding()
@@ -139,64 +156,35 @@ extension View {
     }
 }
 
-class ViewController: UIViewController {
-    
-    @IBOutlet weak var baboView: UITextView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let provider = MoyaProvider<DestinationService>()
-        provider.request(.findDestinations(placeName: "강남", latitude: 123.456, longitude: 789.012)) { (result) in
-            switch result {
-            case let .success(response):
-                let result = try? response.map(DestinationResponse.self)
-                self.baboView.text = result?.data.place.placeName
-            case let .failure(error):
-                print(error.localizedDescription)
-            }
-        }
+func formatDistance(_ meters: Int) -> String {
+    if meters < 1000 {
+        return "\(meters)m"
+    } else {
+        let kilometers = Double(meters) / 1000.0
+        return "\(String(format: "%.1f", kilometers))km"
     }
 }
 
-// 테스트 코드인데 실행 안됨
-//func testExample() throws {
-//
-//      let disposeBag = DisposeBag()
-//
-//      //async 테스트를 위해 expectation 작성
-//      let expectation = XCTestExpectation()
-//
-//
-//      //moya에서 제공해주는 라이브러리로 실제 서버가 아닌 커스텀 엔드포인트를 만드는 과정이다.
-//      let customEndpointClosure = { (target: DestinationService) -> Endpoint in
-//          return Endpoint(url: URL(target: target).absoluteString,
-//                          sampleResponseClosure: { .networkResponse(200, target.sampleData) },
-//                          method: target.method,
-//                          task: target.task,
-//                          httpHeaderFields: target.headers)
-//      }
-//
-//      //provider 를 생성 할 때, 앞 서 작성한 커스텀 엔드 포인트를 넣어 준다.
-//      //immediatelyStub는 서버의 반응이 즉각 적인 옵션이고 0.5초나 2초도 있다.
-//      let testingProvider = MoyaProvider<DestinationService>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
-//
-//    testingProvider.rx.request(.findDestinations(placeName: "강남", latitude: 123.456, longitude: 789.012))
-//          .subscribe{ (result) in
-//                      switch result {
-//                      case .success(let response):
-//                          let result = try? response.map(DestinationResponse.self)
-//                          //응답 받은 값이 같은 지 확인 한다.
-//                          XCTAssertEqual(result?.data.place.placeName, "잠실방배동" )
-//
-//                      case .failure(let error):
-//                          print(error.localizedDescription)
-//                      }
-//                      //response 를 받으면 조건은 갖추어 진것으로 본다.
-//                      expectation.fulfill()
-//
-//                  }
-//                  .disposed(by: disposeBag)
-//  }
+struct PlaceInfo: Identifiable {
+    let id = UUID()
+    let name: String
+    let address: String
+    let distance: Int
+}
+
+func highlightMatchedText(_ originalText: String, _ userInput: String) -> AttributedString {
+    let attributedString = NSMutableAttributedString(string: originalText)
+    let highlightedRange = originalText.lowercased().range(of: userInput.lowercased())
+
+    if let range = highlightedRange {
+        let nsRange = NSRange(range, in: originalText)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: nsRange) // value: Any, Any에 Color 타입은 할당이 안 됨, UIColor는 됨. UIColor Color 차이? color->uicolor로 변경해야할까 다른 방법이 있나 더 찾아봐야 할 듯
+    }
+
+    return AttributedString(attributedString)
+}
+
+
 
 
 //#Preview {
