@@ -13,15 +13,12 @@ struct SearchDestinationView: View {
     let store: StoreOf<SearchDestinationStore>
     
     @State var destination: String = "" // 사용자가 입력하는 값(서버에 전달)
-    @State var locationName = "name" // 서버에서 받은 장소
-    @State var locationAddress = "address"
     
     @State var places: [PlaceInfo] = [ // 최대 10개까지
         PlaceInfo(name: "세종대학교", address: "서울 광진구 능동로 209 세종대학교", distance: 800),
         PlaceInfo(name: "세종대학교광개토관", address: "서울 광진구 능동로 209", distance: 1200),
         PlaceInfo(name: "세종대학교 정문", address: "서울 광진구 군자동", distance: 1400),
         PlaceInfo(name: "세종대학교 대양홀", address: "서울 광진구 능동로 209 세종대학교", distance: 20000),
-        
     ]
 
 
@@ -46,7 +43,7 @@ struct SearchDestinationView: View {
                                     Image(systemName: "xmark.circle.fill")
                                         .foregroundColor(.shapeQuaternaryColor) // shapeQuaternaryColor
                                 }
-                                .buttonStyle(.plain) 
+                                .buttonStyle(.borderless) 
                             } else {
                                 EmptyView()
                             }
@@ -70,42 +67,45 @@ struct SearchDestinationView: View {
                                         .foregroundColor(.shapeColor)
                                         .shadow(radius: 1) // modifier 적용
                                         .padding(1) // infinity 때문에 살짝 잘려서
-                                        .overlay(
+                                        .overlay( // -> frame 제거 못함(실패)
                                             HStack {
                                                 VStack {
                                                     Image(systemName: "mappin.circle.fill")
                                                         .foregroundColor(.keyColor)
+                                                        .font(.title3)
                                                     
                                                     Spacer()
                                                     
                                                     Text(formatDistance(place.distance))
                                                         .foregroundColor(.keyTertiaryColor)
-                                                        .font(.system(size: 12))
+                                                        .font(.caption)
                                                 }
                                                 VStack(alignment: .leading) {
                                                     Text(highlightMatchedText(place.name, destination))
                                                         .foregroundColor(.textColor)
-                                                        .font(.system(size: 13))
+                                                        .font(.subheadline)
                                                         .bold()
                                                     
                                                     Spacer()
                                                     
                                                     Text(highlightMatchedText(place.address, destination))
-                                                        .font(.system(size: 12))
+                                                        .foregroundColor(.textQuaternaryColor)
+                                                        .font(.footnote)
                                                         .lineLimit(nil)
                                                 }
                                                 
                                                 Spacer()
                                                 
+                                                // 장소, 주소 지맘대로 전달
                                                 NavigationLink(
-                                                    destination: MapSearchResultView(store: self.store, locationName: self.$locationName, locationAddress: self.$locationAddress),
+                                                    destination: MapSearchResultView(store: self.store, locationName: place.name, locationAddress: place.address),
                                                     isActive: viewStore.binding(
                                                         get: \.isDetailViewActive,
                                                         send: SearchDestinationStore.Action.toggleDetailView
                                                     )
                                                 ) {
                                                     Text("지도 보기") // 얘도 각각 다르게 -> 선택시 locationName, locationAddress 전달
-                                                        .font(.system(size: 13))
+                                                        .font(.footnote)
                                                         .foregroundColor(.keyColor)
                                                 }
                                             }
@@ -118,6 +118,7 @@ struct SearchDestinationView: View {
                     }
                     .padding()
                     .navigationTitle("\(placeholder) 검색") // "도착지"가 전달이 안 됨
+                // back button -> keyColor
                     .toolbar {
                         Button(action: {
                             viewStore.send(.cancelButtonTapped)
@@ -147,6 +148,7 @@ struct PlaceInfo: Identifiable {
     let distance: Int
 }
 
+// FIXME: red -> keyColor
 func highlightMatchedText(_ originalText: String, _ userInput: String) -> AttributedString {
     let attributedString = NSMutableAttributedString(string: originalText)
     let highlightedRange = originalText.lowercased().range(of: userInput.lowercased())
@@ -158,9 +160,6 @@ func highlightMatchedText(_ originalText: String, _ userInput: String) -> Attrib
 
     return AttributedString(attributedString)
 }
-
-
-
 
 //#Preview {
 //    SearchDestinationView()

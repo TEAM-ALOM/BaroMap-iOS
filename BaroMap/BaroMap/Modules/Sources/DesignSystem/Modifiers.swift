@@ -26,7 +26,8 @@ struct SearchTextFieldModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.system(size: 14))
-            .foregroundColor(.textQuaternary)
+            .foregroundColor(.textColor)
+            .underline(false)
             .accentColor(.keyColor)
             .padding()
             .frame(height: 34)

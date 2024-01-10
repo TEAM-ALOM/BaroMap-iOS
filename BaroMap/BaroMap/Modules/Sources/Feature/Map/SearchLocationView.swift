@@ -30,6 +30,7 @@ struct SearchLocationView: View {
                             }, label: {
                                 Text("장소 검색")
                                     .foregroundColor(.textQuaternaryColor)
+                                    .underline(false)
                                     .frame(alignment: .leading)
 
                                 Spacer() // 안 먹힘
@@ -139,6 +140,7 @@ struct SearchBar: View {
             }, label: {
                 Text(placeholder)
                     .foregroundColor(.textQuaternaryColor)
+                    .underline(false)
                     .frame(alignment: .leading)
                 
                 Spacer()

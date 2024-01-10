@@ -14,8 +14,8 @@ import ComposableArchitecture
 struct MapSearchResultView: View {
     let store: StoreOf<SearchDestinationStore>
         
-    @Binding var locationName: String
-    @Binding var locationAddress: String
+    var locationName: String
+    var locationAddress: String
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -31,34 +31,40 @@ struct MapSearchResultView: View {
                         .frame(height: 95)
                         .frame(maxWidth: .infinity)
                         .foregroundColor(.shapeColor)
-                        .shadow(radius: 1)
+                        .largeShadow()
                         .padding(1)
                         .overlay( // overlay 이유
-                            HStack {
+                            HStack(alignment: .top) {
                                 VStack(alignment: .leading) {
                                     Text("\(locationName)")
-                                        .font(.system(size: 13))
+                                        .font(.subheadline)
                                         .bold()
-
+                                    
+//                                    Spacer() 너무 내려감, linespacing도 X
+                                    
                                     Text("\(locationAddress)")
-                                        .font(.system(size: 12))
+                                        .font(.footnote)
                                 }
                                 
                                 Spacer()
                                 
                                 Menu {
                                     Button("도착지로") {
-                                        print("@를 도착지로 설정함")
+//                                        viewStore.send(.cancelButtonTapped) -> 보라색 오류(TCA)
+                                        print("\(locationName) 을/를 도착지로 설정함")
                                     }
                                     Button("출발지로") {
-                                        print("@를 출발지로 설정함")
+//                                        viewStore.send(.cancelButtonTapped) -> 보라색 오류(TCA)
+                                        print("\(locationName) 을/를 출발지로 설정함")
                                     }
                                 } label: {
                                     VStack {
                                         Image(systemName: "location.circle.fill")
+                                            .font(.largeTitle)
                                             .foregroundColor(.keyColor)
                                         
-                                        Text("길찾기")
+                                        Text("길찾기") // from 장소검색: menu(길찾기), 출발지: text(출발지로), 도착지: text(도착지로)
+                                            .font(.footnote)
                                             .foregroundColor(.keyColor)
                                     }
                                 }
