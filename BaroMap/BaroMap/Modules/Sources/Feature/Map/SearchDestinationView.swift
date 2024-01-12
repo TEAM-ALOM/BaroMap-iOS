@@ -13,7 +13,6 @@ struct SearchDestinationView: View {
     let store: StoreOf<SearchDestinationStore>
     
     @State var destination: String = "" // 사용자가 입력하는 값(서버에 전달)
-    
     @State var places: [PlaceInfo] = [ // 최대 10개까지
         PlaceInfo(name: "세종대학교", address: "서울 광진구 능동로 209 세종대학교", distance: 800),
         PlaceInfo(name: "세종대학교광개토관", address: "서울 광진구 능동로 209", distance: 1200),
@@ -22,7 +21,8 @@ struct SearchDestinationView: View {
     ]
 
 
-    var placeholder: String
+//    @EnvironmentObject var sharedModel: SharedModel
+    var placeholder: String = "장소"
 //    var data: Data
 //    var place: Place
 
@@ -104,7 +104,7 @@ struct SearchDestinationView: View {
                                                         send: SearchDestinationStore.Action.toggleDetailView
                                                     )
                                                 ) {
-                                                    Text("지도 보기") // 얘도 각각 다르게 -> 선택시 locationName, locationAddress 전달
+                                                    Text("지도 보기") // 선택시 locationName, locationAddress 전달
                                                         .font(.footnote)
                                                         .foregroundColor(.keyColor)
                                                 }
@@ -122,6 +122,8 @@ struct SearchDestinationView: View {
                     .toolbar {
                         Button(action: {
                             viewStore.send(.cancelButtonTapped)
+                            
+                            
                         }, label: {
                             Text("닫기")
                                 .foregroundColor(.keyColor) // keyColor

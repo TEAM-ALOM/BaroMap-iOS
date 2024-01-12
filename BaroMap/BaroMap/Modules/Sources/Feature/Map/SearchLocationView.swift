@@ -13,6 +13,9 @@ import CoreLocation
 struct SearchLocationView: View {
     let store: StoreOf<SearchLocationStore>
     
+//    @EnvironmentObject var sharedModel: SharedModel -> 왜안돼
+
+    
     @State var departure: String = ""
     @State var arrival: String = ""
     
@@ -24,7 +27,7 @@ struct SearchLocationView: View {
 
                 VStack {
                     HStack {
-                        if viewStore.isDefectedArrowButtonVisible {
+                        if viewStore.useFromToBox {
                             Button(action: {
                                 viewStore.send(.searchLocationButtonTapped)
                             }, label: {
@@ -32,8 +35,8 @@ struct SearchLocationView: View {
                                     .foregroundColor(.textQuaternaryColor)
                                     .underline(false)
                                     .frame(alignment: .leading)
-
-                                Spacer() // 안 먹힘
+                                
+                                Spacer()
                                 
                                 Image(systemName: "magnifyingglass")
                                     .foregroundColor(.textQuaternaryColor)
@@ -50,8 +53,8 @@ struct SearchLocationView: View {
                             ) { destinationStore in
                                 SearchDestinationView(store: destinationStore, placeholder: "장소")
                             }
-                        }
-                        else {
+                            
+                        } else {
                             depArrBarView()
                         }
                     }
@@ -61,17 +64,25 @@ struct SearchLocationView: View {
                     HStack {
                         Spacer()
                         
-                        if viewStore.isDefectedArrowButtonVisible {
-                            CircleButton(image: "arrow.triangle.turn.up.right.circle.fill") {
-                                viewStore.send(.getDirectionsButtonTapped)
+                        VStack {
+                            
+                            myLocationButton()
+                            
+                            if viewStore.useFromToBox {
+                                CircleButton(image: "xmark.circle.fill") {
+                                    viewStore.send(.getDirectionsButtonTapped)
+                                }
                             }
-                        }
-                        else {
-                            CircleButton(image: "xmark.circle.fill") {
-                                viewStore.send(.getDirectionsButtonTapped)
+                            else {
+                                CircleButton(image: "arrow.triangle.turn.up.right.circle.fill") {
+                                    viewStore.send(.getDirectionsButtonTapped)
+                                }
                             }
                         }
                     }
+                    
+                    // [op]
+                    // PlaceBox(locationName: viewStore.locationName, locationAddress: viewStore.locationAddress) // useFromToBox && filled(출발지 or 도착지)
                 }
                 .padding()
             }
@@ -81,8 +92,8 @@ struct SearchLocationView: View {
     private func depArrBarView() -> some View {
         HStack {
             VStack {
-                SearchBar(store: self.store, placeholder: "출발지")
-                SearchBar(store: self.store, placeholder: "도착지")
+                DepartureSearchBar(store: self.store)
+                DestinationSearchBar(store: self.store)
             }
             
             Button(action: {
@@ -108,58 +119,25 @@ struct SearchLocationView: View {
     }
 }
 
-struct CircleButton: View {
-    let image: String
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            Image(systemName: image)
-                .resizable()
-                .font(Font.title.weight(.bold))
-                .frame(width: 40, height: 40)
-                .foregroundColor(.keyColor)
-                .clipShape(Circle())
-                .background(Color.shapeColor)
-                .cornerRadius(100)
-        }
-        .buttonStyle(.borderless)
-    }
-}
-
-// 코드 중복 -> 재사용
-struct SearchBar: View {
+struct DepartureSearchBar: View {
     let store: StoreOf<SearchLocationStore>
-
-    var placeholder: String
+    
+//    @EnvironmentObject var sharedModel: SharedModel
     
     var body: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Button(action: {
-                viewStore.send(.searchLocationButtonTapped) 
-            }, label: {
-                Text(placeholder)
-                    .foregroundColor(.textQuaternaryColor)
-                    .underline(false)
-                    .frame(alignment: .leading)
-                
-                Spacer()
-            })
-            .buttonStyle(.borderless)
-            .frameStyle(backgroundColor: Color.shapeSecondaryColor, cornerRadius: 10, padding: 8)
-            
-            .fullScreenCover(
-                store: self.store.scope(
-                    state: \.$isShownSearchDestinationView,
-                    action: { .searching($0) }
-                )
-            ) { destinationStore in
-                SearchDestinationView(store: destinationStore, placeholder: placeholder)
-            }
-        }
+        SearchBar(store: self.store, placeholder: "출발지") // 여기서 값 할당
     }
 }
 
+struct DestinationSearchBar: View {
+    let store: StoreOf<SearchLocationStore>
+    
+//    @EnvironmentObject var sharedModel: SharedModel
+    
+    var body: some View {
+        SearchBar(store: self.store, placeholder: "도착지")
+    }
+}
 
 //#Preview {
 //    SearchLocationView()

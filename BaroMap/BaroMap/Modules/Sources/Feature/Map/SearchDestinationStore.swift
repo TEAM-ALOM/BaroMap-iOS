@@ -11,6 +11,7 @@ import ComposableArchitecture
 struct SearchDestinationStore: Reducer {
     struct State: Equatable {
         var isDetailViewActive = false
+        
     }
     
     enum Action: Equatable {

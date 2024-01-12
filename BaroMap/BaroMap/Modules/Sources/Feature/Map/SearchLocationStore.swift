@@ -14,8 +14,8 @@ struct SearchLocationStore: Reducer {
     struct State: Equatable {
         @PresentationState var isShownSearchDestinationView: SearchDestinationStore.State?
         
-        var isDefectedArrowButtonVisible: Bool = true
-        var placeholder: String
+        var useFromToBox: Bool = true
+        //let placeholder: String = "destination" // initialize 해줘야 함
     }
     
     enum Action: Equatable {
@@ -23,7 +23,7 @@ struct SearchLocationStore: Reducer {
         case zoomInButtonTapped
         case zoomOutButtonTapped
         case getDirectionsButtonTapped
-        case currentLocationButtonTapped
+        case myLocationButtonTapped
         
         case searching(PresentationAction<SearchDestinationStore.Action>)
     }
@@ -42,10 +42,10 @@ struct SearchLocationStore: Reducer {
                 return .none
                 
             case .getDirectionsButtonTapped:
-                state.isDefectedArrowButtonVisible.toggle()
+                state.useFromToBox.toggle()
                 return .none
                 
-            case .currentLocationButtonTapped:
+            case .myLocationButtonTapped:
                 return .none
                 
             case .searching: // 검색 중에 수행되는 일

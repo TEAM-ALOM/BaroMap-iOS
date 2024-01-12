@@ -20,7 +20,7 @@ struct MainTabViewStore: Reducer {
         var currentScene: MainScene = .home
         
         var home: HomeMainStore.State = .init()
-        var searchMap: SearchLocationStore.State = .init(placeholder: "장소") // ??
+        var searchMap: SearchLocationStore.State = .init()
         var menu: MenuStore.State = .init()
     }
     
