@@ -69,12 +69,12 @@ struct SearchLocationView: View {
                             myLocationButton()
                             
                             if viewStore.useFromToBox {
-                                CircleButton(image: "xmark.circle.fill") {
+                                CircleButton(image: "arrow.triangle.turn.up.right.circle.fill") {
                                     viewStore.send(.getDirectionsButtonTapped)
                                 }
                             }
                             else {
-                                CircleButton(image: "arrow.triangle.turn.up.right.circle.fill") {
+                                CircleButton(image: "xmark.circle.fill") {
                                     viewStore.send(.getDirectionsButtonTapped)
                                 }
                             }
