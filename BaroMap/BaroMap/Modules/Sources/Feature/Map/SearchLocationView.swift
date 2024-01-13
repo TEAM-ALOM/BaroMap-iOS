@@ -65,9 +65,6 @@ struct SearchLocationView: View {
                         Spacer()
                         
                         VStack {
-                            
-                            myLocationButton()
-                            
                             if viewStore.useFromToBox {
                                 CircleButton(image: "arrow.triangle.turn.up.right.circle.fill") {
                                     viewStore.send(.getDirectionsButtonTapped)
@@ -78,6 +75,8 @@ struct SearchLocationView: View {
                                     viewStore.send(.getDirectionsButtonTapped)
                                 }
                             }
+
+                            myLocationButton()
                         }
                     }
                     

@@ -61,11 +61,12 @@ struct CircleButton: View {
     var body: some View {
         Button(action: action) {
             Image(systemName: image)
+                .resizable()
                 .font(Font.title.weight(.bold))
                 .foregroundColor(.keyColor)
                 .frame(width: 40, height: 40)
+                .background(Circle().fill(Color.shapeColor))
         }
-        .background(Circle().fill(Color.shapeColor))
         .buttonStyle(.borderless)
     }
 }
@@ -107,9 +108,16 @@ struct SearchBar: View {
 
 struct myLocationButton: View {
     var body: some View {
-        CircleButton(image: "scope") {
+        Button {
             print("현재 위치로 이동")
+        } label: {
+            Image(systemName: "scope")
+                .font(Font.title.weight(.bold))
+                .foregroundColor(.keyColor)
+                .frame(width: 40, height: 40)
+                .background(Circle().fill(Color.shapeColor))
         }
+        .buttonStyle(.borderless)
     }
 }
 
