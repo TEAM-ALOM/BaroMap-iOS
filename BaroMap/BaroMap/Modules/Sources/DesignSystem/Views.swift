@@ -9,12 +9,15 @@ import SwiftUI
 import ComposableArchitecture
 import NMapsMap
 import CoreLocation
+import UIKit
 
 struct MapView: UIViewRepresentable {
-    @State private var myLocationButton: NMFLocationButton?
 
     let coord = NMGLatLng(lat: 37.55062, lng: 127.07440)
     let locationManager = CLLocationManager()
+    let view = NMFNaverMapView()
+    let pathOverlay = NMFPath()
+    var isLocationTracking: Bool = true // 검색버튼 누를 때도 활성화됨
 
     class Coordinator: NSObject, NMFMapViewCameraDelegate, CLLocationManagerDelegate {
         var parent: MapView
@@ -25,9 +28,8 @@ struct MapView: UIViewRepresentable {
     }
 
     func makeUIView(context: Context) -> NMFNaverMapView {
-        let view = NMFNaverMapView()
-        
-        view.showZoomControls = false // 뷰 따로
+
+        view.showZoomControls = false
         view.showLocationButton = false
         view.showCompass = false
         view.showIndoorLevelPicker = true
@@ -44,30 +46,25 @@ struct MapView: UIViewRepresentable {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
 
+        // MARK: 경로선 오버레이
+//        pathOverlay.path = NMGLineString(points: [
+//            NMGLatLng(lat: 37.57152, lng: 126.97714),
+//            NMGLatLng(lat: 37.56607, lng: 126.98268),
+//            NMGLatLng(lat: 37.56445, lng: 126.97707),
+//            NMGLatLng(lat: 37.55855, lng: 126.97822)
+//        ])
+//        
+//        pathOverlay.mapView = view.mapView
+            
         return view
     }
-    
+        
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
     
-    func updateUIView(_ uiView: NMFNaverMapView, context: Context) {}
-}
-
-struct CircleButton: View {
-    let image: String
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            Image(systemName: image)
-                .resizable()
-                .font(Font.title.weight(.bold))
-                .foregroundColor(.keyColor)
-                .frame(width: 40, height: 40)
-                .background(Circle().fill(Color.shapeColor))
-        }
-        .buttonStyle(.borderless)
+    func updateUIView(_ uiView: NMFNaverMapView, context: Context) {
+        uiView.mapView.positionMode = isLocationTracking ? .direction : .normal
     }
 }
 
@@ -106,11 +103,28 @@ struct SearchBar: View {
     }
 }
 
-struct myLocationButton: View {
+struct CircleButton: View {
+    let image: String
+    let action: () -> Void
+    
     var body: some View {
-        Button {
-            print("현재 위치로 이동")
-        } label: {
+        Button(action: action) {
+            Image(systemName: image)
+                .resizable()
+                .font(Font.title.weight(.bold))
+                .foregroundColor(.keyColor)
+                .frame(width: 40, height: 40)
+                .background(Circle().fill(Color.shapeColor))
+        }
+        .buttonStyle(.borderless)
+    }
+}
+
+struct myLocationButton: View {
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
             Image(systemName: "scope")
                 .font(Font.title.weight(.bold))
                 .foregroundColor(.keyColor)

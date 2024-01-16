@@ -96,7 +96,7 @@ struct SearchDestinationView: View {
                                                 
                                                 Spacer()
                                                 
-                                                // 장소, 주소 지맘대로 전달
+                                                // FIXME: 프로퍼티에 값 전달 안 됨
                                                 NavigationLink(
                                                     destination: MapSearchResultView(store: self.store, locationName: place.name, locationAddress: place.address),
                                                     isActive: viewStore.binding(
@@ -112,7 +112,6 @@ struct SearchDestinationView: View {
                                                 .padding()
                                         )
                                 }
-
                             }
                         }
                     }
@@ -122,8 +121,6 @@ struct SearchDestinationView: View {
                     .toolbar {
                         Button(action: {
                             viewStore.send(.cancelButtonTapped)
-                            
-                            
                         }, label: {
                             Text("닫기")
                                 .foregroundColor(.keyColor) // keyColor

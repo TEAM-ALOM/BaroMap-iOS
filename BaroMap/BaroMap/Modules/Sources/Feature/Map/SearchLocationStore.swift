@@ -15,6 +15,7 @@ struct SearchLocationStore: Reducer {
         @PresentationState var isShownSearchDestinationView: SearchDestinationStore.State?
         
         var useFromToBox: Bool = true
+        var isLocationTracking: Bool = true
         //let placeholder: String = "destination" // initialize 해줘야 함
     }
     
@@ -46,6 +47,7 @@ struct SearchLocationStore: Reducer {
                 return .none
                 
             case .myLocationButtonTapped:
+                state.isLocationTracking.toggle()
                 return .none
                 
             case .searching: // 검색 중에 수행되는 일

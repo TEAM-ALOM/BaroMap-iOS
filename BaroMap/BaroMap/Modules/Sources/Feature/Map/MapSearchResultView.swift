@@ -13,6 +13,7 @@ struct MapSearchResultView: View {
     
     var locationName: String
     var locationAddress: String
+//    @Binding var isLocationTracking: Bool
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in

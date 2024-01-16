@@ -18,6 +18,7 @@ struct SearchLocationView: View {
     
     @State var departure: String = ""
     @State var arrival: String = ""
+//    @Binding var isLocationTracking = false
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -65,18 +66,16 @@ struct SearchLocationView: View {
                         Spacer()
                         
                         VStack {
-                            if viewStore.useFromToBox {
-                                CircleButton(image: "arrow.triangle.turn.up.right.circle.fill") {
-                                    viewStore.send(.getDirectionsButtonTapped)
-                                }
+                            CircleButton(image: viewStore.useFromToBox ? "arrow.triangle.turn.up.right.circle.fill" : "xmark.circle.fill") {
+                                viewStore.send(.getDirectionsButtonTapped)
                             }
-                            else {
-                                CircleButton(image: "xmark.circle.fill") {
-                                    viewStore.send(.getDirectionsButtonTapped)
-                                }
+                            
+                            myLocationButton() {
+                                viewStore.send(.myLocationButtonTapped)
                             }
-
-                            myLocationButton()
+//                            {
+//                                viewStore.send(.myLocationButtonTapped)
+//                            }
                         }
                     }
                     
