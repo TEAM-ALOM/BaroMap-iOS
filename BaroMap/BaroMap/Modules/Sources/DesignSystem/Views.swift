@@ -11,6 +11,8 @@ import NMapsMap
 import CoreLocation
 import UIKit
 
+// 목적지 좌표 전달받아서 해당 위치로 1. 뷰 이동 2. pin 표시
+
 struct MapView: UIViewRepresentable {
 
     let coord = NMGLatLng(lat: 37.55062, lng: 127.07440)
@@ -64,7 +66,7 @@ struct MapView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: NMFNaverMapView, context: Context) {
-        uiView.mapView.positionMode = isLocationTracking ? .direction : .normal
+        uiView.mapView.positionMode = isLocationTracking ? .direction : .disabled // .normal
     }
 }
 
@@ -79,8 +81,9 @@ struct SearchBar: View {
             Button(action: {
                 viewStore.send(.searchLocationButtonTapped)
                 Destination.shared.placeholder = placeholder
+                Destination.shared.isLocationSearch = false
             }, label: {
-                Text(placeholder) 
+                Text(placeholder)
                     .foregroundColor(.textQuaternaryColor)
                     .underline(false)
                     .frame(alignment: .leading)
@@ -101,6 +104,40 @@ struct SearchBar: View {
         }
     }
 }
+
+struct FilledSearchBar: View {
+    let store: StoreOf<SearchLocationStore>
+
+//    @EnvironmentObject var sharedModel: SharedModel
+    var placeholder: String
+        
+    var body: some View {
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            Button(action: {
+                
+            }, label: {
+                Text(placeholder)
+                    .foregroundColor(.textQuaternaryColor)
+                    .underline(false)
+                    .frame(alignment: .leading)
+                
+                Spacer()
+            })
+            .buttonStyle(.borderless)
+            .frameStyle(backgroundColor: Color.shapeSecondaryColor, cornerRadius: 10, padding: 8)
+            
+            .fullScreenCover(
+                store: self.store.scope(
+                    state: \.$isShownSearchDestinationView,
+                    action: { .searching($0) }
+                )
+            ) { destinationStore in
+                SearchDestinationView(store: destinationStore)
+            }
+        }
+    }
+}
+
 
 struct CircleButton: View {
     let image: String
@@ -140,7 +177,6 @@ struct PlaceBox: View {
 //    @EnvironmentObject var sharedModel: SharedModel
     var locationName: String
     var locationAddress: String
-    @State private var isLocationSearch: Bool = true
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -165,7 +201,7 @@ struct PlaceBox: View {
                         
                         Spacer()
                         
-                        if isLocationSearch {
+                        if Destination.shared.isLocationSearch {
                             SearchResultLocationButton(store: self.store, locationName: locationName, locationAddress: locationAddress)
                         }
                         else {
@@ -177,6 +213,8 @@ struct PlaceBox: View {
         }
     }
 }
+
+
 
 struct SearchResultLocationButton: View {
     let store: StoreOf<SearchDestinationStore>
@@ -254,6 +292,7 @@ class Destination {
     var placeholder: String = "placeholder" // 장소.도착지.출발지
     var departure: String = "departure" // 출발지 이름
     var arrival: String = "arrival"      // 도착지 이름
+    var isLocationSearch: Bool = true
 }
 
 //#Preview {

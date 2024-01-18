@@ -32,6 +32,7 @@ struct SearchLocationView: View {
                             Button(action: {
                                 viewStore.send(.searchLocationButtonTapped)
                                 Destination.shared.placeholder = "장소"
+                                Destination.shared.isLocationSearch = true
                             }, label: {
                                 Text("장소 검색")
                                     .foregroundColor(.textQuaternaryColor)
