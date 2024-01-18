@@ -22,7 +22,7 @@ struct SearchDestinationView: View {
 
 
 //    @EnvironmentObject var sharedModel: SharedModel
-    var placeholder: String = "장소"
+//    var placeholder: String = "장소"
 //    var data: Data
 //    var place: Place
 
@@ -116,7 +116,7 @@ struct SearchDestinationView: View {
                         }
                     }
                     .padding()
-                    .navigationTitle("\(placeholder) 검색") // "도착지"가 전달이 안 됨
+                    .navigationTitle("\(Destination.shared.placeholder) 검색") // "도착지"가 전달이 안 됨
                 // back button -> keyColor
                     .toolbar {
                         Button(action: {

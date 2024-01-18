@@ -24,7 +24,7 @@ struct MapSearchResultView: View {
                 VStack {
                     Spacer()
                     
-                    PlaceBox(locationName: locationName, locationAddress: locationAddress)
+                    PlaceBox(store: self.store, locationName: locationName, locationAddress: locationAddress)
                         .padding()
                 }
             }

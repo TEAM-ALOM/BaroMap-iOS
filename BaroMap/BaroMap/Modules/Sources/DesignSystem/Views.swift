@@ -78,10 +78,9 @@ struct SearchBar: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             Button(action: {
                 viewStore.send(.searchLocationButtonTapped)
-                
-//                sharedModel.placeholder = placeholder
+                Destination.shared.placeholder = placeholder
             }, label: {
-                Text(placeholder)
+                Text(placeholder) 
                     .foregroundColor(.textQuaternaryColor)
                     .underline(false)
                     .frame(alignment: .leading)
@@ -97,7 +96,7 @@ struct SearchBar: View {
                     action: { .searching($0) }
                 )
             ) { destinationStore in
-                SearchDestinationView(store: destinationStore, placeholder: placeholder)
+                SearchDestinationView(store: destinationStore)
             }
         }
     }
@@ -136,61 +135,108 @@ struct myLocationButton: View {
 }
 
 struct PlaceBox: View {
+    let store: StoreOf<SearchDestinationStore>
     
 //    @EnvironmentObject var sharedModel: SharedModel
     var locationName: String
     var locationAddress: String
-
+    @State private var isLocationSearch: Bool = true
+    
     var body: some View {
-        RoundedRectangle(cornerRadius: 20)
-            .frame(height: 95)
-            .frame(maxWidth: .infinity)
-            .foregroundColor(.shapeColor)
-            .largeShadow()
-            .padding(1)
-            .overlay( // overlay 이유
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading) {
-                        Text("\(locationName)")
-                            .font(.subheadline)
-                            .bold()
-                        
-                        // Spacer() 너무 내려감, linespacing도 X
-                        
-                        Text("\(locationAddress)")
-                            .font(.footnote)
-                    }
-                    
-                    Spacer()
-                    // [op]-----
-                    // 장소 검색에서 넘어오면 menu, fromtobox에서 넘어오면 button -> placeholder에 따라
-                    Menu {
-                        Button("도착지로") {
-                            // viewStore.send(.cancelButtonTapped) -> 보라색 오류(TCA)
-                            print("\(locationName) 을/를 도착지로 설정함")
-                        }
-                        Button("출발지로") {
-                            // viewStore.send(.cancelButtonTapped) -> 보라색 오류(TCA)
-                            // [출발지]에 값 저장 -> 출발지를 어디에 선언해야 하나
-                            // call SearchLocationView(From: locationName) -> button에 x btn 추가
-                            // 하나의 뷰 다른 버튼 -> toggle
-                            print("\(locationName) 을/를 출발지로 설정함")
-                        }
-                    } label: {
-                        VStack {
-                            Image(systemName: "location.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(.keyColor)
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            RoundedRectangle(cornerRadius: 20)
+                .frame(height: 95)
+                .frame(maxWidth: .infinity)
+                .foregroundColor(.shapeColor)
+                .largeShadow()
+                .padding(1)
+                .overlay( // overlay 이유
+                    HStack(alignment: .top) {
+                        VStack(alignment: .leading) {
+                            Text("\(locationName)")
+                                .font(.subheadline)
+                                .bold()
                             
-                            Text("길찾기") // from 장소검색: menu(길찾기), 출발지: text(출발지로), 도착지: text(도착지로)
+                            // Spacer() 너무 내려감, linespacing도 X
+                            
+                            Text("\(locationAddress)")
                                 .font(.footnote)
-                                .foregroundColor(.keyColor)
+                        }
+                        
+                        Spacer()
+                        
+                        if isLocationSearch {
+                            SearchResultLocationButton(store: self.store, locationName: locationName, locationAddress: locationAddress)
+                        }
+                        else {
+                            SearchReultDestinationButton(store: self.store)
                         }
                     }
-                    // -----
+                        .padding()
+                )
+        }
+    }
+}
+
+struct SearchResultLocationButton: View {
+    let store: StoreOf<SearchDestinationStore>
+    
+    var locationName: String
+    var locationAddress: String // 중복됨
+    
+    var body: some View {
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            Menu {
+                Button("도착지로") {
+                    viewStore.send(.cancelButtonTapped) //-> 보라색 오류(TCA)
+                    Destination.shared.departure = locationName
+                    print("\(locationName) 을/를 도착지로 설정함")
+                    print("\(Destination.shared.departure) == \(locationName)")
                 }
-                    .padding()
-            )
+                Button("출발지로") {
+                    viewStore.send(.cancelButtonTapped) // -> 보라색 오류(TCA)
+                    // [출발지]에 값 저장 -> 출발지를 어디에 선언해야 하나
+                    // call SearchLocationView(From: locationName) -> button에 x btn 추가
+                    // 하나의 뷰 다른 버튼 -> toggle
+                    Destination.shared.arrival = locationName
+                    print("\(locationName) 을/를 출발지로 설정함")
+                    print("\(Destination.shared.arrival) == \(locationName)")
+                }
+            } label: {
+                VStack {
+                    Image(systemName: "location.circle.fill")
+                        .font(.largeTitle)
+                        .foregroundColor(.keyColor)
+                    
+                    Text("길찾기") // from 장소검색: menu(길찾기), 출발지: text(출발지로), 도착지: text(도착지로)
+                        .font(.footnote)
+                        .foregroundColor(.keyColor)
+                }
+            }
+
+        }
+    }
+}
+// 출발지로/도착지로 btn
+struct SearchReultDestinationButton: View {
+    let store: StoreOf<SearchDestinationStore>
+    
+    var body: some View {
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            Button {
+                viewStore.send(.cancelButtonTapped) // -> 보라색 오류(TCA)
+            } label: {
+                VStack {
+                    Image(systemName: "location.circle.fill")
+                        .font(.largeTitle)
+                        .foregroundColor(.keyColor)
+                    
+                    Text("\(Destination.shared.placeholder)로")
+                        .font(.footnote)
+                        .foregroundColor(.keyColor)
+                }
+            }
+        }
     }
 }
 
@@ -200,6 +246,15 @@ class SharedModel: ObservableObject {
     @Published var locationAddress: String = "locationAddress from sharedModel"
 }
 
+class Destination {
+    static let shared = Destination()
+
+    private init() { }
+
+    var placeholder: String = "placeholder" // 장소.도착지.출발지
+    var departure: String = "departure" // 출발지 이름
+    var arrival: String = "arrival"      // 도착지 이름
+}
 
 //#Preview {
 //    Views()

@@ -31,6 +31,7 @@ struct SearchLocationView: View {
                         if viewStore.useFromToBox {
                             Button(action: {
                                 viewStore.send(.searchLocationButtonTapped)
+                                Destination.shared.placeholder = "장소"
                             }, label: {
                                 Text("장소 검색")
                                     .foregroundColor(.textQuaternaryColor)
@@ -52,7 +53,7 @@ struct SearchLocationView: View {
                                     action: { .searching($0) }
                                 )
                             ) { destinationStore in
-                                SearchDestinationView(store: destinationStore, placeholder: "장소")
+                                SearchDestinationView(store: destinationStore)
                             }
                             
                         } else {
