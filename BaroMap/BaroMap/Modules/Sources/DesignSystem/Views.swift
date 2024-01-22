@@ -251,7 +251,6 @@ struct SearchResultLocationButton: View {
                         .foregroundColor(.keyColor)
                 }
             }
-
         }
     }
 }
@@ -262,7 +261,7 @@ struct SearchReultDestinationButton: View {
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             Button {
-                viewStore.send(.cancelButtonTapped) // -> 보라색 오류(TCA)
+                viewStore.send(.cancelButtonTapped) // -> 보라색 오류(TCA), 의도는 다르지만 결과가 같음(action->SLView)
             } label: {
                 VStack {
                     Image(systemName: "location.circle.fill")
@@ -274,6 +273,8 @@ struct SearchReultDestinationButton: View {
                         .foregroundColor(.keyColor)
                 }
             }
+            
+            
         }
     }
 }
@@ -289,10 +290,19 @@ class Destination {
 
     private init() { }
 
-    var placeholder: String = "placeholder" // 장소.도착지.출발지
-    var departure: String = "departure" // 출발지 이름
-    var arrival: String = "arrival"      // 도착지 이름
+    var placeholder: String = "" // 장소.도착지.출발지
+    var departure: String = "" // 출발지 이름
+    var arrival: String = ""      // 도착지 이름
     var isLocationSearch: Bool = true
+    
+    func navigateToMapView() {
+        guard !departure.isEmpty, !arrival.isEmpty else {
+            return
+        }
+
+        
+    }
+
 }
 
 //#Preview {

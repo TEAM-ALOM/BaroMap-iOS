@@ -97,19 +97,20 @@ struct SearchDestinationView: View {
                                                 Spacer()
                                                 
                                                 // FIXME: 프로퍼티에 값 전달 안 됨
-                                                NavigationLink(
-                                                    destination: MapSearchResultView(store: self.store, locationName: place.name, locationAddress: place.address),
-                                                    isActive: viewStore.binding(
-                                                        get: \.isDetailViewActive,
-                                                        send: SearchDestinationStore.Action.toggleDetailView
-                                                    )
-                                                ) {
-                                                    Text("지도 보기") // 선택시 locationName, locationAddress 전달
-                                                        .font(.footnote)
-                                                        .foregroundColor(.keyColor)
+                                                NavigationStack {
+                                                    NavigationLink(
+                                                        destination: MapSearchResultView(store: self.store, locationName: place.name, locationAddress: place.address),
+                                                        isActive: viewStore.binding(
+                                                            get: \.isDetailViewActive,
+                                                            send: SearchDestinationStore.Action.toggleDetailView
+                                                        )
+                                                    ) {
+                                                        Text("지도 보기") // 선택시 locationName, locationAddress 전달
+                                                            .font(.footnote)
+                                                            .foregroundColor(.keyColor)
+                                                    }
                                                 }
                                             }
-                                                .padding()
                                         )
                                 }
                             }

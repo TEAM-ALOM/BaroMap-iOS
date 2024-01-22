@@ -11,12 +11,14 @@ import Foundation
 import ComposableArchitecture
 
 struct SearchLocationStore: Reducer {
+        
     struct State: Equatable {
         @PresentationState var isShownSearchDestinationView: SearchDestinationStore.State?
         
+        public var departure: String = ""
+        public var arrival: String = ""
         var useFromToBox: Bool = true
         var isLocationTracking: Bool = true
-        //let placeholder: String = "destination" // initialize 해줘야 함
     }
     
     enum Action: Equatable {
@@ -33,6 +35,9 @@ struct SearchLocationStore: Reducer {
         Reduce { state, action in
             switch action {
             case .searchLocationButtonTapped:
+                Destination.shared.placeholder = "장소"
+                Destination.shared.isLocationSearch = true
+                
                 state.isShownSearchDestinationView = SearchDestinationStore.State() // 상태를 초기화
                 return .none
                 
