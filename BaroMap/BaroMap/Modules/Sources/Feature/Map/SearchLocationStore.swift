@@ -11,11 +11,14 @@ import Foundation
 import ComposableArchitecture
 
 struct SearchLocationStore: Reducer {
+        
     struct State: Equatable {
         @PresentationState var isShownSearchDestinationView: SearchDestinationStore.State?
         
-        var isDefectedArrowButtonVisible: Bool = true
-        var placeholder: String
+        public var departure: String = ""
+        public var arrival: String = ""
+        var useFromToBox: Bool = true
+        var isLocationTracking: Bool = true
     }
     
     enum Action: Equatable {
@@ -23,7 +26,7 @@ struct SearchLocationStore: Reducer {
         case zoomInButtonTapped
         case zoomOutButtonTapped
         case getDirectionsButtonTapped
-        case currentLocationButtonTapped
+        case myLocationButtonTapped
         
         case searching(PresentationAction<SearchDestinationStore.Action>)
     }
@@ -32,6 +35,9 @@ struct SearchLocationStore: Reducer {
         Reduce { state, action in
             switch action {
             case .searchLocationButtonTapped:
+                Destination.shared.placeholder = "장소"
+                Destination.shared.isLocationSearch = true
+                
                 state.isShownSearchDestinationView = SearchDestinationStore.State() // 상태를 초기화
                 return .none
                 
@@ -42,10 +48,11 @@ struct SearchLocationStore: Reducer {
                 return .none
                 
             case .getDirectionsButtonTapped:
-                state.isDefectedArrowButtonVisible.toggle()
+                state.useFromToBox.toggle()
                 return .none
                 
-            case .currentLocationButtonTapped:
+            case .myLocationButtonTapped:
+                state.isLocationTracking.toggle()
                 return .none
                 
             case .searching: // 검색 중에 수행되는 일

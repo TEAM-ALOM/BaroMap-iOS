@@ -11,48 +11,20 @@ import NMapsMap
 import CoreLocation
 
 struct SearchLocationView: View {
-    let store: StoreOf<SearchLocationStore> // store 연결
-    
-    @State var departure: String = ""
-    @State var arrival: String = ""
-    
+    let store: StoreOf<SearchLocationStore>
+        
     var body: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in // observe 이유는?
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
             ZStack {
                 MapView()
-                    .edgesIgnoringSafeArea(.top) // 탭바 지키기
+                    .edgesIgnoringSafeArea(.top) 
 
                 VStack {
                     HStack {
-                        if viewStore.isDefectedArrowButtonVisible {
-                            Button(action: {
-                                viewStore.send(.searchLocationButtonTapped)
-                            }, label: {
-                                Text("장소 검색")
-                                    .foregroundColor(.textTertiary)
-                                    .underline(true)
-                                    .frame(height: 12)
-                                    .frame(maxWidth: .infinity)
-
-                                Spacer() // 안 먹힘
-                                
-                                Image(systemName: "magnifyingglass")
-                                    .foregroundColor(.textTertiary)
-                            })
-                            .background(Color.shapeColor) // shapeColor
-                            .cornerRadius(10)
-                            .fullScreenCover(
-                                store: self.store.scope(
-                                    state: \.$isShownSearchDestinationView,
-                                    action: { .searching($0) }
-                                )
-                            ) { destinationStore in
-                                SearchDestinationView(store: destinationStore, placeholder: "장소")
-                            }
-                        }
-                        // 출발지-도착지 검색 바
-                        else {
-                            depArrBarView()
+                        if viewStore.useFromToBox {
+                            placeBarView(viewStore: self.store)
+                        } else {
+                            fromtoBarView()
                         }
                     }
                     
@@ -61,14 +33,13 @@ struct SearchLocationView: View {
                     HStack {
                         Spacer()
                         
-                        if viewStore.isDefectedArrowButtonVisible {
-                            CircleButton(image: "arrow.triangle.turn.up.right.circle.fill") {
+                        VStack {
+                            CircleButton(image: viewStore.useFromToBox ? "arrow.triangle.turn.up.right.circle.fill" : "xmark.circle.fill") {
                                 viewStore.send(.getDirectionsButtonTapped)
                             }
-                        }
-                        else {
-                            CircleButton(image: "xmark.circle.fill") {
-                                viewStore.send(.getDirectionsButtonTapped)
+                            
+                            myLocationButton() {
+                                viewStore.send(.myLocationButtonTapped)
                             }
                         }
                     }
@@ -78,80 +49,69 @@ struct SearchLocationView: View {
         }
     }
     
-    private func depArrBarView() -> some View {
+    private func placeBarView(viewStore: StoreOf<SearchLocationStore>) -> some View {
+        Button(action: {
+            viewStore.send(.searchLocationButtonTapped)
+        }, label: {
+            Text("장소 검색")
+                .foregroundColor(.textQuaternaryColor)
+                .underline(false)
+                .frame(alignment: .leading)
+            
+            Spacer()
+            
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(.textQuaternaryColor)
+                .fontWeight(.semibold)
+        })
+        .buttonStyle(.borderless)
+        .frameStyle(backgroundColor: Color.shapeColor, cornerRadius: 10, padding: 8)
+        .largeShadow()
+        .fullScreenCover(
+            store: self.store.scope(
+                state: \.$isShownSearchDestinationView,
+                action: { .searching($0) }
+            )
+        ) { destinationStore in
+            SearchDestinationView(store: destinationStore)
+        }
+    }
+    
+    private func fromtoBarView() -> some View {
         HStack {
             VStack {
-                SearchBar(store: self.store, placeholder: "출발지")
-                SearchBar(store: self.store, placeholder: "도착지")
+                fromSearchBar()
+                toSearchBar()
             }
+            
             Button(action: {
-                swapDepartureArrival()
+                // swapDepartureArrival()
             }) {
                 Image(systemName: "arrow.up.arrow.down")
+                    .font(.title3)
+                    .fontWeight(.bold)
                     .foregroundColor(Color.keyColor)
-                    .frame(width: 10, height: 28)
             }
+            .buttonStyle(.borderless)
         }
-        .padding(10)
-        .background(Color.shapeColor)
-        .cornerRadius(20)
+        .frameStyle(backgroundColor: Color.shapeColor, cornerRadius: 20, padding: 11)
+        .largeShadow()
     }
     
-    private func swapDepartureArrival() {
-        withAnimation {
-            let tmp = departure
-            departure = arrival
-            arrival = tmp
-        }
-    }
-}
-
-struct CircleButton: View {
-    let image: String
-    let action: () -> Void
+    // MARK: from, to 해결 후
+//    private func swapDepartureArrival() {
+//        withAnimation {
+//            let tmp = departure
+//            departure = arrival
+//            arrival = tmp
+//        }
+//    }
     
-    var body: some View {
-        Button(action: action) {
-            Image(systemName: image)
-                .font(Font.title.weight(.bold))
-                .frame(width: 30, height: 30)
-                .foregroundColor(.keyColor)
-                .clipShape(Circle())
-        }
+    private func fromSearchBar() -> some View {
+        SearchBar(store: self.store, placeholder: "출발지")
     }
-}
-
-// 코드 중복 -> 재사용
-struct SearchBar: View {
-    let store: StoreOf<SearchLocationStore>
-
-    var placeholder: String
     
-    var body: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Button(action: {
-                viewStore.send(.searchLocationButtonTapped) 
-            }, label: {
-                Text(placeholder)
-                    .foregroundColor(.textQuaternaryColor)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 13)
-            })
-            .background(Color.shapeSecondaryColor)
-            .cornerRadius(9)
-            .fullScreenCover(
-                store: self.store.scope(
-                    state: \.$isShownSearchDestinationView,
-                    action: { .searching($0) }
-                )
-            ) { destinationStore in
-                SearchDestinationView(store: destinationStore, placeholder: placeholder)
-            }
-        }
+    private func toSearchBar() -> some View {
+        SearchBar(store: self.store, placeholder: "도착지")
     }
 }
-
-
-//#Preview {
-//    SearchLocationView()
-//}
