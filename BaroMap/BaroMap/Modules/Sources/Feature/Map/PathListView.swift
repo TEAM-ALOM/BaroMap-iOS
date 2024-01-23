@@ -7,9 +7,13 @@
 
 import SwiftUI
 
-struct searchLocation: View {
+struct PathListView: View {
     @State private var departureText: String = ""
-        @State private var destinationText: String = ""
+    @State private var destinationText: String = ""
+    
+    @State private var click = false
+    @State private var isDatePickerVisible = false
+    @State private var currentTime = Date()
     var body: some View {
         VStack{
             ZStack{
@@ -80,16 +84,35 @@ struct searchLocation: View {
                         }
                         Spacer()
                         HStack{
-                            Text("오늘 9:41 출발")
-                                .font(.system(size:12))
-                                .foregroundColor(.gray)
-                            Image(systemName:"chevron.up")
-                                .resizable()
-                                .frame(width: 8, height: 8)
-                                .foregroundColor(.gray)
-                            Text("시간순")
-                                .font(.system(size:12))
-                                .foregroundColor(.gray)
+//                            Text("오늘 9:41 출발")
+//                                .font(.system(size:12))
+//                                .foregroundColor(.gray)
+//                            Image(systemName:"chevron.up")
+//                                .resizable()
+//                                .frame(width: 8, height: 8)
+//                                .foregroundColor(.gray)
+//                            Text("시간순")
+//                                .font(.system(size:12))
+//                                .foregroundColor(.gray)
+                            Button(action:{
+                                click.toggle()
+                            }){
+                                HStack{
+                                    Text("\(formattedDate(currentTime)) 출발")
+                                        .font(.system(size:12))
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                            .sheet(isPresented: $click){
+                                VStack{
+                                    DatePicker("DatePicker", selection : $currentTime, displayedComponents: [.date, .hourAndMinute])
+                                        .datePickerStyle(.graphical)
+                                    
+                                    Button("Confirm"){
+                                        click.toggle()
+                                    }.padding()
+                                }
+                            }
                             Image(systemName:"chevron.up.chevron.down")
                                 .resizable()
                                 .frame(width: 8, height: 8)
@@ -232,9 +255,14 @@ struct searchLocation: View {
         }
         Spacer()
     }
+    private func formattedDate(_ date: Date) -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM월 dd일 HH:mm"
+            return dateFormatter.string(from: date)
+        }
 }
 
 
-//#Preview {
-//    PathListView()
-//}
+#Preview {
+    PathListView()
+}

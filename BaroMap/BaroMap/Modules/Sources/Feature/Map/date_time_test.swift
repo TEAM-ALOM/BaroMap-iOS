@@ -29,8 +29,6 @@ struct date_time_test: View {
                     click.toggle()
                 }.padding()
             }
-            
-            
         }
     }
     private func formattedDate(_ date: Date) -> String {
