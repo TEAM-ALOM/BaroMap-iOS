@@ -53,6 +53,7 @@
 		93EE68412B3EBB8D0052454D /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EE68402B3EBB8D0052454D /* MenuView.swift */; };
 		93EE68432B3EBC190052454D /* MainTabStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EE68422B3EBC190052454D /* MainTabStore.swift */; };
 		93EE68452B3EBC260052454D /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EE68442B3EBC260052454D /* MainTabView.swift */; };
+		F33F27DB2B4FC8B5008AF784 /* date_time_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33F27DA2B4FC8B5008AF784 /* date_time_test.swift */; };
 		F3C563362B4D19EE00B6B5CA /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = F3C563352B4D19EE00B6B5CA /* .gitignore */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +119,7 @@
 		93EE68402B3EBB8D0052454D /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		93EE68422B3EBC190052454D /* MainTabStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabStore.swift; sourceTree = "<group>"; };
 		93EE68442B3EBC260052454D /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		F33F27DA2B4FC8B5008AF784 /* date_time_test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = date_time_test.swift; sourceTree = "<group>"; };
 		F3C563352B4D19EE00B6B5CA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -300,6 +302,7 @@
 				936F0B0E2B4AE89F008D3A9A /* MapSearchResultView.swift */,
 				9357AF602B1DB29E000B4353 /* PathListStore.swift */,
 				9357AF622B1DB2A6000B4353 /* PathListView.swift */,
+				F33F27DA2B4FC8B5008AF784 /* date_time_test.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				93EE683F2B3EBB870052454D /* MenuStore.swift in Sources */,
 				936F0B0F2B4AE89F008D3A9A /* MapSearchResultView.swift in Sources */,
 				9357AEEB2B0C173D000B4353 /* ContentView.swift in Sources */,
+				F33F27DB2B4FC8B5008AF784 /* date_time_test.swift in Sources */,
 				9357AF5B2B1DB20A000B4353 /* SearchLocationView.swift in Sources */,
 				9357AF532B1DACA6000B4353 /* DestinationResponse.swift in Sources */,
 				9357AF242B0C1939000B4353 /* Paddings+Extensions.swift in Sources */,
@@ -685,7 +689,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BaroMap/Preview Content\"";
-				DEVELOPMENT_TEAM = X4S5UYW6DJ;
+				DEVELOPMENT_TEAM = MG3S834SMA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BaroMap/Info.plist;
@@ -719,7 +723,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BaroMap/Preview Content\"";
-				DEVELOPMENT_TEAM = X4S5UYW6DJ;
+				DEVELOPMENT_TEAM = MG3S834SMA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BaroMap/Info.plist;
