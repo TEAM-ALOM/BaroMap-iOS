@@ -14,7 +14,7 @@ struct DestinationResponse: Decodable {
     
     struct Data: Decodable {
         var place: Place
-        var distance: Int
+        var distance: Double
         
         struct Place: Decodable {
             var placeName: String
