@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "flowstacks",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnpatrickmorgan/FlowStacks",
+      "state" : {
+        "revision" : "9629bd329146d4ba476bfdb50d293acbf8ba3f5d",
+        "version" : "0.3.8"
+      }
+    },
+    {
       "identity" : "moya",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Moya/Moya.git",
@@ -86,8 +95,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-composable-architecture.git",
       "state" : {
-        "revision" : "eddc1869b37ce42e3b34e72b1e1355d049e73970",
-        "version" : "1.4.2"
+        "revision" : "ae491c9e3f66631e72d58db8bb4c27dfc3d3afd4",
+        "version" : "1.6.0"
       }
     },
     {
@@ -142,6 +151,15 @@
       "state" : {
         "revision" : "78f9d72cf667adb47e2040aa373185c88c63f0dc",
         "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "tcacoordinators",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnpatrickmorgan/TCACoordinators.git",
+      "state" : {
+        "revision" : "c0060666c67e431268bd6b9897da2787f563a21b",
+        "version" : "0.8.0"
       }
     },
     {

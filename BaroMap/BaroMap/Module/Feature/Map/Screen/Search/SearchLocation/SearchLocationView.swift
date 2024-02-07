@@ -7,8 +7,6 @@
 
 import SwiftUI
 import ComposableArchitecture
-import NMapsMap
-import CoreLocation
 
 struct SearchLocationView: View {
     let store: StoreOf<SearchLocationStore>
@@ -17,25 +15,25 @@ struct SearchLocationView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             ZStack {
                 MapView()
-                    .edgesIgnoringSafeArea(.top) 
-
+                    .edgesIgnoringSafeArea(.top)
+                
                 VStack {
+                    // TODO: 나중에 view로 따로 뺄게요
                     HStack {
-                        if viewStore.useFromToBox {
-                            placeBarView(viewStore: self.store)
+                        if !viewStore.isEnabled {
+                            placeSearchBar(viewStore: self.store)
                         } else {
-                            fromtoBarView()
+                            fromtoSearchBar(viewStore: self.store)
                         }
                     }
-                    
                     Spacer()
                     
                     HStack {
                         Spacer()
                         
                         VStack {
-                            CircleButton(image: viewStore.useFromToBox ? "arrow.triangle.turn.up.right.circle.fill" : "xmark.circle.fill") {
-                                viewStore.send(.getDirectionsButtonTapped)
+                            CircleButton(image: !viewStore.isEnabled ? "arrow.triangle.turn.up.right.circle.fill" : "xmark.circle.fill") {
+                                viewStore.send(.toggleButtonTapped)
                             }
                             
                             myLocationButton() {
@@ -49,9 +47,10 @@ struct SearchLocationView: View {
         }
     }
     
-    private func placeBarView(viewStore: StoreOf<SearchLocationStore>) -> some View {
+    // TODO: struct로 변경하겠습니다
+    private func placeSearchBar(viewStore: StoreOf<SearchLocationStore>) -> some View {
         Button(action: {
-            viewStore.send(.searchLocationButtonTapped)
+            viewStore.send(.changeType(.searching))
         }, label: {
             Text("장소 검색")
                 .foregroundColor(.textQuaternaryColor)
@@ -70,22 +69,27 @@ struct SearchLocationView: View {
         .fullScreenCover(
             store: self.store.scope(
                 state: \.$isShownSearchDestinationView,
-                action: { .searching($0) }
+                action: { .next( $0 ) }
             )
         ) { destinationStore in
             SearchDestinationView(store: destinationStore)
         }
     }
     
-    private func fromtoBarView() -> some View {
+    public func fromtoSearchBar(viewStore: StoreOf<SearchLocationStore>) -> some View {
         HStack {
             VStack {
-                fromSearchBar()
-                toSearchBar()
+                SearchBar(store: self.store, placeHolder: "출발지") {
+                    viewStore.send(.changeType(.from))
+                }
+                SearchBar(store: viewStore, placeHolder: "도착지") {
+                    viewStore.send(.changeType(.to))
+                }
             }
             
+            // MARK: swap action
             Button(action: {
-                // swapDepartureArrival()
+                    
             }) {
                 Image(systemName: "arrow.up.arrow.down")
                     .font(.title3)
@@ -97,21 +101,35 @@ struct SearchLocationView: View {
         .frameStyle(backgroundColor: Color.shapeColor, cornerRadius: 20, padding: 11)
         .largeShadow()
     }
-    
-    // MARK: from, to 해결 후
-//    private func swapDepartureArrival() {
-//        withAnimation {
-//            let tmp = departure
-//            departure = arrival
-//            arrival = tmp
-//        }
-//    }
-    
-    private func fromSearchBar() -> some View {
-        SearchBar(store: self.store, placeholder: "출발지")
-    }
-    
-    private func toSearchBar() -> some View {
-        SearchBar(store: self.store, placeholder: "도착지")
+}
+
+struct SearchBar: View {
+    let store: StoreOf<SearchLocationStore>
+    let placeHolder: String
+    let action: () -> Void
+                
+    var body: some View {
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            Button(
+                action: action,
+                label: {
+                Text(placeHolder)
+                    .foregroundColor(.textQuaternaryColor)
+                    .underline(false)
+                    .frame(alignment: .leading)
+                
+                Spacer()
+            })
+            .buttonStyle(.borderless)
+            .frameStyle(backgroundColor: Color.shapeSecondaryColor, cornerRadius: 10, padding: 8)
+            .fullScreenCover(
+                store: self.store.scope(
+                    state: \.$isShownSearchDestinationView,
+                    action: { .next( $0 ) }
+                )
+            ) { destinationStore in
+                SearchDestinationView(store: destinationStore)
+            }
+        }
     }
 }
