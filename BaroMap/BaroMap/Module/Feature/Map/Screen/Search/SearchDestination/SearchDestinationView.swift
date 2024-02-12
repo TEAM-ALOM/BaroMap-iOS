@@ -17,7 +17,8 @@ struct SearchDestinationView: View {
             NavigationView {
                     VStack(alignment: .leading) {
                         HStack {
-                            TextField("검색어 입력", text: viewStore.binding(get: \.viewStore.text, send: SearchDestinationStore.Action.updateText))
+                            // FIXME: 1
+//                            TextField("검색어 입력", text: viewStore.binding(get: \.SearchDestinationStore.text, send: SearchDestinationStore.Action.updateText))
 
                             Spacer()
                             
@@ -82,18 +83,18 @@ struct SearchDestinationView: View {
                                                 
                                                 Spacer()
                                                 
-                                                // FIXME: 프로퍼티에 값 전달 안 됨
-                                                NavigationLink(
-                                                    destination: SearchMapResultView(store: self.store.scope(state: \.searchMapResult, action: SearchDestinationStore.Action.searchMapResult)),
-                                                    isActive: viewStore.binding(
-                                                        get: \.isDetailViewActive,
-                                                        send: SearchDestinationStore.Action.detailViewTapped
-                                                    )
-                                                ) {
-                                                    Text("지도 보기")
-                                                        .font(.footnote)
-                                                        .foregroundColor(.keyColor)
-                                                }
+                                                // FIXME: 2
+//                                                NavigationLink(
+//                                                    destination: SearchMapResultView(store: self.store.scope(state: \.searchMapResult, action: SearchDestinationStore.Action.searchMapResult)),
+//                                                    isActive: viewStore.binding(
+//                                                        get: \.isDetailViewActive,
+//                                                        send: SearchDestinationStore.Action.detailViewTapped
+//                                                    )
+//                                                ) {
+//                                                    Text("지도 보기")
+//                                                        .font(.footnote)
+//                                                        .foregroundColor(.keyColor)
+//                                                }
                                             }
                                                 .padding()
                                         )
@@ -110,9 +111,6 @@ struct SearchDestinationView: View {
                                 .foregroundColor(.keyColor)
                         })
                 }
-            }
-            .onAppear {
-                viewStore.send(.setTitle)
             }
         }
     }
@@ -138,5 +136,4 @@ struct SearchDestinationView: View {
 
         return AttributedString(attributedString)
     }
-
 }

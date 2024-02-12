@@ -144,7 +144,7 @@ class Destination {
     var searching: Place = Place(placeName: "", placeAddress: "", coord: Coordinate(latitude: 0.0, longitude: 0.0), distance: 0.0)
     var from: Place = Place(placeName: "", placeAddress: "", coord: Coordinate(latitude: 0.0, longitude: 0.0), distance: 0.0)
     var to: Place = Place(placeName: "", placeAddress: "", coord: Coordinate(latitude: 0.0, longitude: 0.0), distance: 0.0)
-    var type: PlaceSearchType = .searching
+    var type: SearchLocationView.PlaceSearchType = .searching
     var isLocationSearch: Bool = true
     
     func navigateToMapView()  {

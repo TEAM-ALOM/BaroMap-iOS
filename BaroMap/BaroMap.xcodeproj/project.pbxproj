@@ -43,7 +43,6 @@
 		936F0B0F2B4AE89F008D3A9A /* SearchMapResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936F0B0E2B4AE89F008D3A9A /* SearchMapResultView.swift */; };
 		936F0B132B4B02CE008D3A9A /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936F0B122B4B02CE008D3A9A /* Views.swift */; };
 		939CD9E22B64133400704757 /* SearchLocationView+CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939CD9E12B64133400704757 /* SearchLocationView+CellType.swift */; };
-		93A74A102B613BA70027BEC9 /* TCACoordinators in Frameworks */ = {isa = PBXBuildFile; productRef = 93A74A0F2B613BA70027BEC9 /* TCACoordinators */; };
 		93EE68332B3EADF90052454D /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 93EE68322B3EADF90052454D /* CombineMoya */; };
 		93EE68352B3EADF90052454D /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 93EE68342B3EADF90052454D /* Moya */; };
 		93EE68372B3EADF90052454D /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 93EE68362B3EADF90052454D /* ReactiveMoya */; };
@@ -131,7 +130,6 @@
 			files = (
 				93EE68392B3EADF90052454D /* RxMoya in Frameworks */,
 				933F72002B3EBDC900DAD51C /* NMapsMap in Frameworks */,
-				93A74A102B613BA70027BEC9 /* TCACoordinators in Frameworks */,
 				93EE68332B3EADF90052454D /* CombineMoya in Frameworks */,
 				93EE68372B3EADF90052454D /* ReactiveMoya in Frameworks */,
 				9357AF142B0C17CE000B4353 /* ComposableArchitecture in Frameworks */,
@@ -479,7 +477,6 @@
 				93EE68362B3EADF90052454D /* ReactiveMoya */,
 				93EE68382B3EADF90052454D /* RxMoya */,
 				933F71FF2B3EBDC900DAD51C /* NMapsMap */,
-				93A74A0F2B613BA70027BEC9 /* TCACoordinators */,
 			);
 			productName = BaroMap;
 			productReference = 9357AEE52B0C173D000B4353 /* BaroMap.app */;
@@ -557,7 +554,6 @@
 				9357AF122B0C17CE000B4353 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				93EE68312B3EADF90052454D /* XCRemoteSwiftPackageReference "Moya" */,
 				933F71FE2B3EBDC900DAD51C /* XCRemoteSwiftPackageReference "NMapsMap" */,
-				93A74A0E2B613BA70027BEC9 /* XCRemoteSwiftPackageReference "TCACoordinators" */,
 			);
 			productRefGroup = 9357AEE62B0C173D000B4353 /* Products */;
 			projectDirPath = "";
@@ -822,7 +818,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alom.BaroMap--";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alom.BaroMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -857,7 +853,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alom.BaroMap--";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alom.BaroMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -999,14 +995,6 @@
 				minimumVersion = 1.4.2;
 			};
 		};
-		93A74A0E2B613BA70027BEC9 /* XCRemoteSwiftPackageReference "TCACoordinators" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/johnpatrickmorgan/TCACoordinators.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.8.0;
-			};
-		};
 		93EE68312B3EADF90052454D /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
@@ -1027,11 +1015,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9357AF122B0C17CE000B4353 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
-		};
-		93A74A0F2B613BA70027BEC9 /* TCACoordinators */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 93A74A0E2B613BA70027BEC9 /* XCRemoteSwiftPackageReference "TCACoordinators" */;
-			productName = TCACoordinators;
 		};
 		93EE68322B3EADF90052454D /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;

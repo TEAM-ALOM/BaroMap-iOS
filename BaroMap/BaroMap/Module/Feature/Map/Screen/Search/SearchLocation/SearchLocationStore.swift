@@ -17,15 +17,13 @@ struct SearchLocationStore: Reducer {
 
         var isEnabled: Bool = false
         var isLocationTracking: Bool = true
+        var selectedButton: String?
     }
     
     enum Action: Equatable {
         case toggleButtonTapped
         case myLocationButtonTapped
-        case changeType(PlaceSearchType)
-        case searching
-        case from
-        case to
+        case changeType(SearchLocationView.PlaceSearchType)
         case next(PresentationAction<SearchDestinationStore.Action>)
     }
     
@@ -41,21 +39,10 @@ struct SearchLocationStore: Reducer {
                 return .none
 
             case .changeType(let placeSearchType):
-                state.isShownSearchDestinationView = SearchDestinationStore.State()
-                return .run { send in
-                    switch placeSearchType {
-                    case .searching:
-                        await send(.searching)
-                        
-                    case .from:
-                        await send(.from)
-                        
-                    case .to:
-                        await send(.to)
-                    }
-                }
-
-            default:
+                state.isShownSearchDestinationView = SearchDestinationStore.State(title: placeSearchType.placeholder)
+                return .none
+                                
+            case .next:
                 return .none
             }
         }
