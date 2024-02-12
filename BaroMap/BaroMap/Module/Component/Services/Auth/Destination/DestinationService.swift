@@ -13,14 +13,14 @@ public enum DestinationService {
 }
 
 extension DestinationService: TargetType {
-    public var baseURL: URL {  // 클라이언트->서버->api호출
-        return URL(string: "https://baromap.com")!
+    public var baseURL: URL {
+        return URL(string: "https://www.alom-baromap.co.kr")!
     }
     
     public var path: String {
         switch self {
         case .findDestinations:
-            return "/places/directions/destination"
+            return "/places/destination"
         }
     }
     
@@ -31,32 +31,10 @@ extension DestinationService: TargetType {
         }
     }
     
-    // 테스트 안 하면 없어도 됨
     public var sampleData: Data {
-        switch self {
-        case .findDestinations(let placeName, let latitude, let longitude):
-            let placeName = placeName
-            let latitude = latitude
-            let longitude = longitude
-            
-            return Data(
-                """
-                {
-                    "type": "success",
-                    "data": {
-                        "id": 200,
-                        "placeName": "\(placeName)종합운동장,
-                        "distance": 3.7,
-                        "address": "서울 송파구 올림픽로 25(잠실동)"
-                        "latitude": "\(latitude)",
-                        "logitude": "\(longitude)"
-                    }
-                }
-                """.utf8
-            )
-        }
+        return Data()
     }
-// 어떻게 데이터를 전송할 것이냐 -
+
     public var task: Task {
         switch self {
         case .findDestinations(let placeName, let latitude, let longitude):

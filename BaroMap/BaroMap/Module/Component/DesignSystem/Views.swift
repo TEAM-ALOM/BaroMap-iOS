@@ -68,38 +68,6 @@ struct MapView: UIViewRepresentable {
     }
 }
 
-struct FilledSearchBar: View {
-    let store: StoreOf<SearchLocationStore>
-
-    let placeholder: String
-        
-    var body: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Button(action: {
-                
-            }, label: {
-                Text(placeholder)
-                    .foregroundColor(.textQuaternaryColor)
-                    .underline(false)
-                    .frame(alignment: .leading)
-                
-                Spacer()
-            })
-            .buttonStyle(.borderless)
-            .frameStyle(backgroundColor: Color.shapeSecondaryColor, cornerRadius: 10, padding: 8)
-            
-            .fullScreenCover(
-                store: self.store.scope(
-                    state: \.$isShownSearchDestinationView,
-                    action: { .next($0) }
-                )
-            ) { destinationStore in
-                SearchDestinationView(store: destinationStore)
-            }
-        }
-    }
-}
-
 struct CircleButton: View {
     let image: String
     let action: () -> Void
@@ -129,27 +97,5 @@ struct myLocationButton: View {
                 .background(Circle().fill(Color.shapeColor))
         }
         .buttonStyle(.borderless)
-    }
-}
-
-
-// 출발지로/도착지로 btn
-
-class Destination {
-    static let shared = Destination()
-
-    private init() { }
-
-    var text: String = ""
-    var searching: Place = Place(placeName: "", placeAddress: "", coord: Coordinate(latitude: 0.0, longitude: 0.0), distance: 0.0)
-    var from: Place = Place(placeName: "", placeAddress: "", coord: Coordinate(latitude: 0.0, longitude: 0.0), distance: 0.0)
-    var to: Place = Place(placeName: "", placeAddress: "", coord: Coordinate(latitude: 0.0, longitude: 0.0), distance: 0.0)
-    var type: SearchLocationView.PlaceSearchType = .searching
-    var isLocationSearch: Bool = true
-    
-    func navigateToMapView()  {
-        guard !from.placeName.isEmpty, !to.placeName.isEmpty else {
-            return
-        }
     }
 }

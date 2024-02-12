@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		930A6B9E2B68D929001376A4 /* SearchBarCellStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A6B9D2B68D929001376A4 /* SearchBarCellStore.swift */; };
 		933F72002B3EBDC900DAD51C /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 933F71FF2B3EBDC900DAD51C /* NMapsMap */; };
 		933F72052B3ECB2300DAD51C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 933F72042B3ECB2300DAD51C /* Assets.xcassets */; };
 		9357AEED2B0C173F000B4353 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9357AEEC2B0C173F000B4353 /* Assets.xcassets */; };
@@ -75,7 +74,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		930A6B9D2B68D929001376A4 /* SearchBarCellStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCellStore.swift; sourceTree = "<group>"; };
 		933F72012B3EC09500DAD51C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		933F72042B3ECB2300DAD51C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9357AEE52B0C173D000B4353 /* BaroMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaroMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -304,14 +302,6 @@
 			path = Path;
 			sourceTree = "<group>";
 		};
-		939CD9E32B64155300704757 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				930A6B9D2B68D929001376A4 /* SearchBarCellStore.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
 		93A749F62B612D680027BEC9 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,7 +421,6 @@
 				9357AF582B1DB1FF000B4353 /* SearchLocationStore.swift */,
 				9357AF5A2B1DB20A000B4353 /* SearchLocationView.swift */,
 				939CD9E12B64133400704757 /* SearchLocationView+CellType.swift */,
-				939CD9E32B64155300704757 /* Cell */,
 			);
 			path = SearchLocation;
 			sourceTree = "<group>";
@@ -623,7 +612,6 @@
 				9357AF282B0C19BB000B4353 /* RootStore.swift in Sources */,
 				9357AF5D2B1DB217000B4353 /* SearchDestinationStore.swift in Sources */,
 				9357AF462B1DA665000B4353 /* StationInfo.swift in Sources */,
-				930A6B9E2B68D929001376A4 /* SearchBarCellStore.swift in Sources */,
 				936F0B132B4B02CE008D3A9A /* Views.swift in Sources */,
 				93EE68412B3EBB8D0052454D /* MenuView.swift in Sources */,
 				9357AF202B0C1915000B4353 /* Modifiers.swift in Sources */,

@@ -25,12 +25,6 @@ struct SearchMapResultView: View {
                 }
             }
             .navigationBarTitle("", displayMode: .inline)
-            .onAppear {
-                viewStore.send(.detailViewTapped(true))
-            }
-            .onDisappear {
-                viewStore.send(.detailViewTapped(false))
-            }
         }
     }
 }
@@ -46,22 +40,22 @@ struct PlaceBox: View {
                 .foregroundColor(.shapeColor)
                 .largeShadow()
                 .padding(1)
-                .overlay( // overlay 이유
+                .overlay( 
                     HStack(alignment: .top) {
                         VStack(alignment: .leading) {
-                            Text("\(viewStore.place.placeName)")
+                            Text("\(viewStore.placeName)")
                                 .font(.subheadline)
                                 .bold()
                             
                             // Spacer() 너무 내려감, linespacing도 X
                             
-                            Text("\(viewStore.place.placeAddress)")
+                            Text("\(viewStore.placeAddress)")
                                 .font(.footnote)
                         }
                         
                         Spacer()
                         
-                        if Destination.shared.isLocationSearch {
+                        if viewStore.isMenu {
                             setTypeButton(viewStore: self.store)
                         }
                         else {
@@ -70,10 +64,13 @@ struct PlaceBox: View {
                     }
                         .padding()
                 )
+                .onAppear {
+                    viewStore.send(.onAppear)
+                }
         }
     }
     
-    private func goButton(viewStore: StoreOf<SearchMapResultStore>) -> some View {
+    private func goButton(viewStore: Store<SearchMapResultStore.State, SearchMapResultStore.Action>) -> some View {
         Button {
             viewStore.send(.goButtonTapped)
         } label: {
@@ -82,14 +79,15 @@ struct PlaceBox: View {
                     .font(.largeTitle)
                     .foregroundColor(.keyColor)
                 
-                Text("\(Destination.shared.type.placeholder)로")
-                    .font(.footnote)
-                    .foregroundColor(.keyColor)
+                // FIXME: state 접근이 안 됨
+//                Text("\(viewStore.state.type.placeholder)로")
+//                    .font(.footnote)
+//                    .foregroundColor(.keyColor)
             }
         }
     }
     
-    private func setTypeButton(viewStore: StoreOf<SearchMapResultStore>) -> some View {
+    private func setTypeButton(viewStore: Store<SearchMapResultStore.State, SearchMapResultStore.Action>) -> some View {
         Menu {
             Button("도착지로") {
                 viewStore.send(.setToButtonTapped)

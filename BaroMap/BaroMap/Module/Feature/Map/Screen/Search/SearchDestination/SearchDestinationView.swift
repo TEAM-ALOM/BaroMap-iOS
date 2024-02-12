@@ -17,12 +17,14 @@ struct SearchDestinationView: View {
             NavigationView {
                     VStack(alignment: .leading) {
                         HStack {
-                            // FIXME: 1
-//                            TextField("검색어 입력", text: viewStore.binding(get: \.SearchDestinationStore.text, send: SearchDestinationStore.Action.updateText))
+                            TextField("검색어 입력", text: viewStore.binding(
+                                get: \.userInput,
+                                send: SearchDestinationStore.Action.updateText
+                            ))
 
                             Spacer()
                             
-                            if !viewStore.text.isEmpty {
+                            if !viewStore.userInput.isEmpty {
                                 Button(action: {
                                     viewStore.send(.updateText(""))
                                 }) {
@@ -68,14 +70,14 @@ struct SearchDestinationView: View {
                                                 }
                                                 
                                                 VStack(alignment: .leading) {
-                                                    Text(highlightMatchedText("세종대학교", viewStore.text))
+                                                    Text(highlightMatchedText(viewStore.placeName, viewStore.userInput))
                                                         .foregroundColor(.textColor)
                                                         .font(.subheadline)
                                                         .bold()
                                                     
                                                     Spacer()
                                                     
-                                                    Text(highlightMatchedText("세종시", viewStore.text))
+                                                    Text(highlightMatchedText(viewStore.placeAddress, viewStore.userInput))
                                                         .foregroundColor(.textQuaternaryColor)
                                                         .font(.footnote)
                                                         .lineLimit(nil)
@@ -84,17 +86,19 @@ struct SearchDestinationView: View {
                                                 Spacer()
                                                 
                                                 // FIXME: 2
-//                                                NavigationLink(
-//                                                    destination: SearchMapResultView(store: self.store.scope(state: \.searchMapResult, action: SearchDestinationStore.Action.searchMapResult)),
-//                                                    isActive: viewStore.binding(
-//                                                        get: \.isDetailViewActive,
-//                                                        send: SearchDestinationStore.Action.detailViewTapped
-//                                                    )
-//                                                ) {
-//                                                    Text("지도 보기")
-//                                                        .font(.footnote)
-//                                                        .foregroundColor(.keyColor)
-//                                                }
+                                                
+//                                                ,
+//                                                isActive: viewStore.binding(
+//                                                    get: \.isDetailViewActive,
+//                                                    send: SearchDestinationStore.Action.detailViewTapped
+                                                
+                                                NavigationLink(
+                                                    destination: SearchMapResultView(store: self.store.scope(state: \.searchMapResult, action: SearchDestinationStore.Action.searchMapResult))
+                                                ) {
+                                                    Text("지도 보기")
+                                                        .font(.footnote)
+                                                        .foregroundColor(.keyColor)
+                                                }
                                             }
                                                 .padding()
                                         )
@@ -102,7 +106,7 @@ struct SearchDestinationView: View {
                         }
                     }
                     .padding()
-                    .navigationTitle("\(viewStore.title) 검색")
+                    .navigationTitle("\(viewStore.title.placeholder) 검색")
                     .toolbar {
                         Button(action: {
                             viewStore.send(.cancelButtonTapped)
@@ -124,14 +128,14 @@ struct SearchDestinationView: View {
         }
     }
 
-    // FIXME: red -> keyColor
     private func highlightMatchedText(_ originalText: String, _ userInput: String) -> AttributedString {
         let attributedString = NSMutableAttributedString(string: originalText)
         let highlightedRange = originalText.lowercased().range(of: userInput.lowercased())
+        let uiColor = UIColor(.keyColor)
 
         if let range = highlightedRange {
             let nsRange = NSRange(range, in: originalText)
-            attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: nsRange) // value: Any, Any에 Color 타입은 할당이 안 됨, UIColor는 됨. UIColor Color 차이? color->uicolor로 변경해야할까 다른 방법이 있나 더 찾아봐야 할 듯
+            attributedString.addAttribute(.foregroundColor, value: uiColor, range: nsRange)
         }
 
         return AttributedString(attributedString)

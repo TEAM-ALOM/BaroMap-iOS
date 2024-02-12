@@ -18,13 +18,19 @@ struct SearchLocationStore: Reducer {
         var isEnabled: Bool = false
         var isLocationTracking: Bool = true
         var selectedButton: String?
+        
+        var from: String = "강남구청역"
+        var to: String = ""
     }
     
     enum Action: Equatable {
         case toggleButtonTapped
         case myLocationButtonTapped
-        case changeType(SearchLocationView.PlaceSearchType)
-        case next(PresentationAction<SearchDestinationStore.Action>)
+        case changeType(PlaceSearchType)
+        case searching(PresentationAction<SearchDestinationStore.Action>)
+        
+        case updateFrom(String)
+        case updateTo(String)
     }
     
     var body: some Reducer<State, Action> {
@@ -39,14 +45,22 @@ struct SearchLocationStore: Reducer {
                 return .none
 
             case .changeType(let placeSearchType):
-                state.isShownSearchDestinationView = SearchDestinationStore.State(title: placeSearchType.placeholder)
+                state.isShownSearchDestinationView = SearchDestinationStore.State(title: placeSearchType)
                 return .none
                                 
-            case .next:
+            case .searching:
+                return .none
+                
+            case .updateFrom(let text):
+                state.from = text
+                return .none
+
+            case .updateTo(let text):
+                state.to = text
                 return .none
             }
         }
-        .ifLet(\.$isShownSearchDestinationView, action: /Action.next) {
+        .ifLet(\.$isShownSearchDestinationView, action: /Action.searching) {
             SearchDestinationStore()
         }
     }
