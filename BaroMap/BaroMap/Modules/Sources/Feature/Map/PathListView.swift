@@ -9,7 +9,8 @@ import SwiftUI
 
 struct searchLocation: View {
     @State private var departureText: String = ""
-        @State private var destinationText: String = ""
+    @State private var destinationText: String = ""
+    
     var body: some View {
         VStack{
             ZStack{
